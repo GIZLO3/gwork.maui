@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="gwork.maui.Pages.RegisterPage"
-             Title="RegisterPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="RegisterPage"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             x:Class="gwork.maui.Pages.RegisterPage">
+    <Grid RowDefinitions="auto, *, *, *, *, *, *" ColumnDefinitions="*, *">
+        <Label Text="Zarejestruj się do G-work" Grid.Row="0" Grid.ColumnSpan="2" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold"/>
+        <Label Text="Email:" Grid.Row="1" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" FontSize="13"/>
+        <Label Text="Imie:" Grid.Row="2" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" FontSize="13"/>
+        <Label Text="Nazwisko:" Grid.Row="3" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" FontSize="13"/>
+        <Label Text="Hasło:" Grid.Row="4" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" FontSize="13"/>
+        <Label Text="Powtórz hasło:" Grid.Row="5" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" FontSize="13"/>
+
+        <Entry x:Name="emailEntry" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" MinimumWidthRequest="200"/>
+        <Entry x:Name="nameLabel" Grid.Row="2" Grid.Column="1" VerticalOptions="Center" MinimumWidthRequest="200"/>
+        <Entry x:Name="surnameLabel" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" MinimumWidthRequest="200"/>
+        <Entry x:Name="passwordLabel" Grid.Row="4" Grid.Column="1" VerticalOptions="Center" MinimumWidthRequest="200"/>
+        <Entry x:Name="password2Label" Grid.Row="5" Grid.Column="1" VerticalOptions="Center" MinimumWidthRequest="200"/>
+
+        <Button Text="Zarejestruj się" Grid.Row="6" Grid.ColumnSpan="2" VerticalOptions="Center" HorizontalOptions="Center" FontSize="13" Clicked="RegisterButtonClicked"/>
+    </Grid>
 </ContentPage>
