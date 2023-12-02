@@ -1,4 +1,5 @@
-﻿using gwork.maui.Pages;
+﻿using gwork.maui.Data;
+using gwork.maui.Pages;
 using Microsoft.Extensions.Logging;
 
 namespace gwork.maui
@@ -20,6 +21,8 @@ namespace gwork.maui
 
             builder.Services.AddTransient<LogInPage>();
             builder.Services.AddTransient<RegisterPage>();
+
+            builder.Services.AddSingleton<UserDatabase>();
 
 #if DEBUG
     		builder.Logging.AddDebug();
