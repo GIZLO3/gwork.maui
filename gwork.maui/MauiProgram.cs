@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using gwork.maui.Pages;
+using Microsoft.Extensions.Logging;
 
 namespace gwork.maui
 {
@@ -14,6 +15,11 @@ namespace gwork.maui
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+
+            builder.Services.AddSingleton<MainPage>();
+
+            builder.Services.AddTransient<LogInPage>();
+            builder.Services.AddTransient<RegisterPage>();
 
 #if DEBUG
     		builder.Logging.AddDebug();
