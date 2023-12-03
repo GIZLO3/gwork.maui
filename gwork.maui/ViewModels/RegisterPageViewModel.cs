@@ -44,12 +44,12 @@ namespace gwork.maui.ViewModels
                 if (Password.Length < 8)
                 {
                     success = false;
-                    await Shell.Current.DisplayAlert("Błąd", "Hasło musi zawierać przynajmniej 8 znaków!", "Błąd", "OK");
+                    await Shell.Current.DisplayAlert("Błąd", "Hasło musi zawierać przynajmniej 8 znaków!","OK");
                 }
                 if (Password2 != Password)
                 {
                     success = false;
-                    await Shell.Current.DisplayAlert("Błąd", "Hasła się nie zgadzają!", "Błąd", "OK");
+                    await Shell.Current.DisplayAlert("Błąd", "Hasła się nie zgadzają!", "OK");
                 }
                 
 
@@ -57,7 +57,7 @@ namespace gwork.maui.ViewModels
                 if (storedUser != null)
                 {
                     success = false;
-                    await Shell.Current.DisplayAlert("Błąd", "Użytkownik z takim emailem już istnieje!", "Błąd", "OK");
+                    await Shell.Current.DisplayAlert("Błąd", "Użytkownik z takim emailem już istnieje!", "OK");
                 }
             }
 
