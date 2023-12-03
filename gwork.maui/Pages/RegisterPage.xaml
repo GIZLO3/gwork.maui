@@ -10,7 +10,7 @@
             <StackLayout Orientation="Horizontal" Grid.Row="1" HorizontalOptions="Center" Spacing="10">
                 <Label Text="Email:" 
                        VerticalOptions="Center"/>
-                <Entry x:Name="emailEntry" 
+                <Entry Text="{Binding Email}"
                        VerticalOptions="Center"
                        MinimumWidthRequest="{OnIdiom 220, Desktop=400}"/>
             </StackLayout>
@@ -18,7 +18,7 @@
             <StackLayout Orientation="Horizontal" Grid.Row="2" HorizontalOptions="Center" Spacing="10">
                 <Label Text="Imie:" 
                        VerticalOptions="Center"/>
-                <Entry x:Name="nameLabel" 
+                <Entry Text="{Binding Name}" 
                        VerticalOptions="Center"
                        MinimumWidthRequest="{OnIdiom 220, Desktop=400}"/>
             </StackLayout>
@@ -26,7 +26,7 @@
             <StackLayout Orientation="Horizontal" Grid.Row="3" HorizontalOptions="Center" Spacing="10">
                 <Label Text="Nazwisko:" 
                        VerticalOptions="Center"/>
-                <Entry x:Name="surnameLabel" 
+                <Entry Text="{Binding Surname}" 
                        VerticalOptions="Center"
                        MinimumWidthRequest="{OnIdiom 220, Desktop=400}"/>
             </StackLayout>
@@ -34,7 +34,7 @@
             <StackLayout Orientation="Horizontal" Grid.Row="4" HorizontalOptions="Center" Spacing="10">
                 <Label Text="Hasło:" 
                        VerticalOptions="Center"/>
-                <Entry x:Name="passwordLabel" 
+                <Entry Text="{Binding Password}"
                        IsPassword="True" 
                        VerticalOptions="Center"
                        MinimumWidthRequest="{OnIdiom 220, Desktop=400}"/>
@@ -43,7 +43,7 @@
             <StackLayout Orientation="Horizontal" Grid.Row="5" HorizontalOptions="Center" Spacing="10">
                 <Label Text="Powtórz hasło:" 
                        VerticalOptions="Center"/>
-                <Entry x:Name="password2Label" 
+                <Entry Text="{Binding Password2}"
                        IsPassword="True" 
                        VerticalOptions="Center"
                        MinimumWidthRequest="{OnIdiom 220, Desktop=400}"/>
@@ -52,7 +52,7 @@
             <Button Text="Zarejestruj się" 
                     Grid.Row="6" Grid.ColumnSpan="2" 
                     VerticalOptions="Center" HorizontalOptions="Center" 
-                    Clicked="RegisterButtonClicked"/>
+                    Command="{Binding RegisterCommand}"/>
         </Grid>
     </ScrollView>
 </ContentPage>

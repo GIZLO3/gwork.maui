@@ -1,7 +1,11 @@
-﻿namespace gwork.maui
+﻿using gwork.maui.Models;
+
+namespace gwork.maui
 {
     public partial class App : Application
     {
+        public static User? LoggedUser;
+
         public App()
         {
             InitializeComponent();

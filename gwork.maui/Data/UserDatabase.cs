@@ -26,5 +26,11 @@ namespace gwork.maui.Data
             await Init();
             return await Database.InsertAsync(user);
         }
+
+        public async Task<User> GetUserAsync(string email)
+        {
+            await Init();
+            return await Database.Table<User>().Where(user => user.Email == email).FirstOrDefaultAsync();
+        }
     }
 }
