@@ -13,7 +13,7 @@
             <StackLayout Orientation="Horizontal" Grid.Row="1" HorizontalOptions="Center" Spacing="10">
                 <Label Text="Email:" 
                        VerticalOptions="Center"/>
-                <Entry x:Name="emailEntry" 
+                <Entry Text="{Binding Email}" 
                        VerticalOptions="Center"
                        MinimumWidthRequest="{OnIdiom 220, Desktop=400}"/>         
             </StackLayout>
@@ -21,7 +21,7 @@
             <StackLayout Orientation="Horizontal" Grid.Row="2" HorizontalOptions="Center" Spacing="10">
                 <Label Text="Hasło:" 
                        VerticalOptions="Center"/>      
-                <Entry x:Name="passwordEntry" 
+                <Entry Text="{Binding Password}" 
                        Grid.Row="2" Grid.Column="1" 
                        IsPassword="True" 
                        VerticalOptions="Center"
@@ -31,7 +31,7 @@
             <Button Text="Zaloguj się" 
                     Grid.Row="3"
                     VerticalOptions="Center" HorizontalOptions="Center" 
-                    Clicked="LoginButtonClicked"/>
+                    Command="{Binding LoginCommand}"/>
         </Grid>
     </ScrollView>
 </ContentPage>
