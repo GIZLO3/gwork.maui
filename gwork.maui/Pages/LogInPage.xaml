@@ -4,15 +4,34 @@
              x:Class="gwork.maui.Pages.LogInPage"
              Shell.NavBarIsVisible="False">
     <ScrollView VerticalOptions="Center">
-        <Grid RowDefinitions="auto, auto, auto, auto" ColumnDefinitions="*,*" RowSpacing="10">
-            <Label Text="Zaloguj się do G-work" Grid.Row="0" Grid.ColumnSpan="2" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold"/>
-            <Label Text="Email:" Grid.Row="1" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" FontSize="13"/>
-            <Label Text="Hasło:" Grid.Row="2" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" FontSize="13"/>
+        <Grid RowDefinitions="auto, auto, auto, auto" ColumnDefinitions="*" RowSpacing="10">
+            <Label Text="Zaloguj się do G-work" 
+                   Grid.Row="0"
+                   HorizontalOptions="Center" 
+                   FontSize="16" FontAttributes="Bold"/>        
 
-            <Entry x:Name="emailEntry" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Margin="0,0,30,0"/>
-            <Entry x:Name="lasswordEntry" Grid.Row="2" Grid.Column="1" IsPassword="True" VerticalOptions="Center" Margin="0,0,30,0"/>
+            <StackLayout Orientation="Horizontal" Grid.Row="1" HorizontalOptions="Center" Spacing="10">
+                <Label Text="Email:" 
+                       VerticalOptions="Center"/>
+                <Entry x:Name="emailEntry" 
+                       VerticalOptions="Center"
+                       MinimumWidthRequest="{OnIdiom 220, Desktop=400}"/>         
+            </StackLayout>
 
-            <Button Text="Zaloguj się" Grid.Row="3" Grid.ColumnSpan="2" VerticalOptions="Center" HorizontalOptions="Center" FontSize="13" Clicked="LoginButtonClicked"/>
+            <StackLayout Orientation="Horizontal" Grid.Row="2" HorizontalOptions="Center" Spacing="10">
+                <Label Text="Hasło:" 
+                       VerticalOptions="Center"/>      
+                <Entry x:Name="passwordEntry" 
+                       Grid.Row="2" Grid.Column="1" 
+                       IsPassword="True" 
+                       VerticalOptions="Center"
+                       MinimumWidthRequest="{OnIdiom 220, Desktop=400}"/>
+            </StackLayout>
+
+            <Button Text="Zaloguj się" 
+                    Grid.Row="3"
+                    VerticalOptions="Center" HorizontalOptions="Center" 
+                    Clicked="LoginButtonClicked"/>
         </Grid>
     </ScrollView>
 </ContentPage>
