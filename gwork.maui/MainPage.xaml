@@ -8,7 +8,7 @@
         <VerticalStackLayout
             Padding="20,10"
             Spacing="25">
-            <controls:NavBar/>
+            <controls:NavBar x:Name="navBar"/>
 
             <ListView x:Name="offersListView">
                 

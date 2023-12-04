@@ -9,13 +9,42 @@ public partial class NavBar : ContentView
 		InitializeComponent();
 	}
 
-    private async void GoToLogInPage(object sender, EventArgs e)
+    public void PageAppearing()
     {
-		await Shell.Current.GoToAsync(nameof(LogInPage));
+        if (App.LoggedUser != null)
+        {
+            navBarButton1.Text = "Profil";
+            navBarButton2.Text = "Wyloguj siê";
+        }
+        else
+        {
+            navBarButton1.Text = "Zaloguj siê";
+            navBarButton2.Text = "Zarejestuj siê";
+        }
     }
 
-    private async void GoToRegisterPage(object sender, EventArgs e)
+    private void NavBarButton1Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync(nameof(RegisterPage));
+        if (App.LoggedUser != null)
+        {
+            
+        }
+        else//otwarcie strony logowania
+        {
+            Shell.Current.GoToAsync(nameof(LogInPage));
+        }
+    }
+
+    private void NavBarButton2Clicked(object sender, EventArgs e)
+    {
+        if (App.LoggedUser != null)//obs³uga wylogowania siê
+        {
+            App.LoggedUser = null;
+            PageAppearing();
+        }
+        else//otwarcie strony rejestracji
+        {
+            Shell.Current.GoToAsync(nameof(RegisterPage));
+        }
     }
 }

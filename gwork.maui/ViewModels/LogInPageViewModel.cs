@@ -30,6 +30,7 @@ namespace gwork.maui.ViewModels
                 if (storedUser != null && PasswordService.VerifyPassword(Password, storedUser.Password, storedUser.Salt))
                 {
                     App.LoggedUser = storedUser;
+                    JsonService.WriteFile(App.LoggedUser, App.LoggedUserJsonFilePath);
                     await Shell.Current.GoToAsync("..");
                 }
                 else

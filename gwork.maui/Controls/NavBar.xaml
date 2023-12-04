@@ -5,11 +5,11 @@
     <VerticalStackLayout>
         <StackLayout Orientation="Horizontal">
             <Label Text="G-work" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontSize="24"/>
-            <Button Text="Zaloguj się" 
+            <Button x:Name="navBarButton1"
                     Margin="5,0" 
-                    Clicked="GoToLogInPage"/>
-            <Button Text="Zarejestruj się"
-                    Clicked="GoToRegisterPage"/>
+                    Clicked="NavBarButton1Clicked"/>
+            <Button x:Name="navBarButton2" 
+                    Clicked="NavBarButton2Clicked"/>
         </StackLayout>
     </VerticalStackLayout>
 </ContentView>
