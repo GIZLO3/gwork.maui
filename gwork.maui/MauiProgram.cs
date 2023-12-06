@@ -19,8 +19,9 @@ namespace gwork.maui
 
             builder.Services.AddSingleton<MainPage>();
 
-            builder.Services.AddTransient<LogInPage>();
-            builder.Services.AddTransient<RegisterPage>();
+            builder.Services.AddSingleton<LogInPage>();
+            builder.Services.AddSingleton<RegisterPage>();
+            builder.Services.AddSingleton<UserDetailsPage>();
 
 #if DEBUG
     		builder.Logging.AddDebug();

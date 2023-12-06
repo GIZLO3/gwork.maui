@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="gwork.maui.Pages.UserDetailsPage"
+             Shell.NavBarIsVisible="False">
+    <VerticalStackLayout VerticalOptions="Center" Padding="40">
+        <Label Text="Twój profil" 
+               FontSize="24" 
+               FontAttributes="Bold" 
+               HorizontalOptions="Center"/>
+        <Grid RowDefinitions="{OnIdiom '*', Phone='*,*'}" ColumnDefinitions="{OnIdiom '*,*', Phone='*'}">
+            <Grid Grid.Row="0" Grid.Column="0"  
+                  RowDefinitions="*,*,*" ColumnDefinitions="*,*">
+                <Label Text="Email" 
+                       Grid.Row="0" Grid.Column="0"/>
+                <Label Text="Imię" 
+                       Grid.Row="1" Grid.Column="0"/>
+                <Label Text="Nazwisko" 
+                       Grid.Row="2" Grid.Column="0"/>
+
+                <Label Text="{Binding User.Email}" 
+                       Grid.Row="0" Grid.Column="1"/>
+                <Label Text="{Binding User.Name}" 
+                       Grid.Row="1" Grid.Column="1"/>
+                <Label Text="{Binding User.Surname}"
+                       Grid.Row="2" Grid.Column="1"/>
+            </Grid>
+            <Grid Grid.Row="{OnIdiom '0', Phone='1'}" Grid.Column="{OnIdiom '1', Phone='0'}" 
+                  RowDefinitions="*,*,*" ColumnDefinitions="*,*">
+                <Label Text="Email" 
+                       Grid.Row="0" Grid.Column="0"/>
+                <Label Text="Imię" 
+                       Grid.Row="1" Grid.Column="0"/>
+                <Label Text="Nazwisko" 
+                       Grid.Row="2" Grid.Column="0"/>
+
+                <Label Text="{Binding User.Email}" 
+                       Grid.Row="0" Grid.Column="1"/>
+                <Label Text="{Binding User.Name}"
+                       Grid.Row="1" Grid.Column="1"/>
+                <Label Text="{Binding User.Surname}" 
+                       Grid.Row="2" Grid.Column="1"/>
+            </Grid>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

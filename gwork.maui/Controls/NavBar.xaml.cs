@@ -27,7 +27,7 @@ public partial class NavBar : ContentView
     {
         if (App.LoggedUser != null)
         {
-            
+            Shell.Current.GoToAsync(nameof(UserDetailsPage));
         }
         else//otwarcie strony logowania
         {
