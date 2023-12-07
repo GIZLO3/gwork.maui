@@ -12,6 +12,6 @@ namespace gwork.maui.ViewModels
     public partial class UserDetailsPageViewModel : ObservableObject
     {
         [ObservableProperty]
-        User? user = App.LoggedUser;
+        User user = (User)App.LoggedUser.Clone();
     }
 }

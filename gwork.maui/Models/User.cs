@@ -2,7 +2,7 @@
 
 namespace gwork.maui.Models
 {
-    public class User
+    public class User : ICloneable
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
@@ -11,5 +11,10 @@ namespace gwork.maui.Models
         public byte[]? Salt { get; set; }
         public string? Name { get; set; }
         public string? Surname { get; set; }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }
