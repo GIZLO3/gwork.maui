@@ -9,8 +9,8 @@
                FontAttributes="Bold"/>
         <Grid RowDefinitions="{OnIdiom '*', Phone='*,*'}" ColumnDefinitions="{OnIdiom '*,*', Phone='*'}">
             <Grid Grid.Row="0" Grid.Column="0"
-                  RowDefinitions="*,*,*" ColumnDefinitions="auto,auto" 
-                  ColumnSpacing="10">
+                  RowDefinitions="*,*,*,auto" ColumnDefinitions="auto,auto" 
+                  RowSpacing="10" ColumnSpacing="10">
                 <Label Text="Email: " 
                        Grid.Row="0" Grid.Column="0"
                        VerticalOptions="Center"/>
@@ -32,6 +32,11 @@
                        Grid.Row="2" Grid.Column="1"
                        VerticalOptions="Center"
                        WidthRequest="200"/>
+
+                <Button Text="Edytuj informacje"
+                        Grid.Row="3" Grid.ColumnSpan="2"
+                        VerticalOptions="Center" HorizontalOptions="Center"
+                        Command="{Binding EditUserCommand}"/>
             </Grid>
 
             <StackLayout Grid.Row="{OnIdiom '0', Phone='1'}" Grid.Column="{OnIdiom '1', Phone='0'}">

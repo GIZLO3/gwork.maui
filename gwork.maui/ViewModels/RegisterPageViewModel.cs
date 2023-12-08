@@ -61,7 +61,7 @@ namespace gwork.maui.ViewModels
                 }
             }
 
-            if (success)//dodanie do bazy uzytkownika i powrót do okna logowania
+            if (success)//dodanie do bazy uzytkownika
             {
                 var user = new User();
                 user.Email = Email;
