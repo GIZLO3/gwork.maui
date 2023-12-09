@@ -14,5 +14,4 @@ namespace gwork.maui
             (navBar as NavBar)?.PageAppearing();
         }
     }
-
 }

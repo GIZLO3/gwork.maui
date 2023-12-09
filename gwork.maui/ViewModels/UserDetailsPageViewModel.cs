@@ -7,7 +7,9 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using gwork.maui.Data;
 using gwork.maui.Models;
+using gwork.maui.Pages;
 using gwork.maui.Services;
+using Microsoft.Maui.Controls.Platform.Compatibility;
 
 namespace gwork.maui.ViewModels
 {
@@ -16,40 +18,74 @@ namespace gwork.maui.ViewModels
         [ObservableProperty]
         User user = (User)App.LoggedUser.Clone();
 
+        [ObservableProperty]
+        string? password, newPassword, newPasswordConfirmation;
+
         [RelayCommand]
         async Task EditUser()
         {
-            if (user != null)
+            if (User != null)
             {
                 var success = true;
+                var changePassword = false;
 
-                if (string.IsNullOrWhiteSpace(user.Name) || string.IsNullOrWhiteSpace(user.Surname))
+                if (string.IsNullOrEmpty(User.Name) || string.IsNullOrEmpty(User.Surname) || string.IsNullOrEmpty(Password))
                 {
                     success = false;
                     await Shell.Current.DisplayAlert("Błąd", "Uzupełnij wszytkie pola!", "OK");
                 }
                 else
                 {
-                    if (!user.Name.All(char.IsLetterOrDigit) || user.Name.Length > 256)
+                    if (!User.Name.All(char.IsLetterOrDigit) || User.Name.Length > 256)
                     {
                         success = false;
                         await Shell.Current.DisplayAlert("Błąd", "Imię musi mieć od 1 do 256 znaków i może zawierać tylko litery i liczby!", "OK");
                     }
-                    if (!user.Surname.All(char.IsLetterOrDigit) || user.Surname.Length > 256)
+                    if (!User.Surname.All(char.IsLetterOrDigit) || User.Surname.Length > 256)
                     {
                         success = false;
                         await Shell.Current.DisplayAlert("Błąd", "Nazwisko musi mieć od 1 do 256 znaków i może zawierać tylko litery i liczby!", "OK");
                     }
+                    if (!PasswordService.VerifyPassword(Password, App.LoggedUser.Password, App.LoggedUser.Salt))
+                    {
+                        success = false;
+                        await Shell.Current.DisplayAlert("Błąd", "Hasło jest błędne", "OK");
+                    }
 
+                    if (!string.IsNullOrWhiteSpace(NewPassword) && !string.IsNullOrWhiteSpace(NewPasswordConfirmation))
+                    {
+                        changePassword = true;
+
+                        if (NewPassword.Length < 8)
+                        {
+                            success = false;
+                            await Shell.Current.DisplayAlert("Błąd", "Hasło musi zawierać przynajmniej 8 znaków!", "OK");
+                        }
+                        if (NewPassword != NewPasswordConfirmation)
+                        {
+                            success = false;
+                            await Shell.Current.DisplayAlert("Błąd", "Nowe hasła się nie zgadzają!", "OK");
+                        }
+                    }
                 }
 
                 if (success)
                 {
-                    App.LoggedUser.Name = user.Name;
-                    App.LoggedUser.Surname = user.Surname;
+                    App.LoggedUser.Name = User.Name;
+                    App.LoggedUser.Surname = User.Surname;
+
+                    if(changePassword)
+                    {
+                        App.LoggedUser.Password = PasswordService.HashPasword(NewPassword, out var salt);
+                        App.LoggedUser.Salt = salt;
+                    }
+
                     var userDatabase = new UserDatabase();
                     await userDatabase.UdateUserAsync(App.LoggedUser);
                     JsonService.WriteFile(App.LoggedUser, App.LoggedUserJsonFilePath);
+
+                    await Shell.Current.GoToAsync("..");
+                    await Shell.Current.GoToAsync(nameof(UserDetailsPage));
                 }
             }
         }

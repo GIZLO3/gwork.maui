@@ -10,7 +10,7 @@ namespace gwork.maui.Data
 {
     public class UserDatabase
     {
-        SQLiteAsyncConnection Database;
+        SQLiteAsyncConnection? Database;
 
         async Task Init()
         {
@@ -35,6 +35,7 @@ namespace gwork.maui.Data
         public async Task<User> GetUserAsync(string email)
         {
             await Init();
+
             return await Database.Table<User>().Where(user => user.Email == email).FirstOrDefaultAsync();
         }
 

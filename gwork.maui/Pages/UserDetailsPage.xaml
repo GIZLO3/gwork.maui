@@ -6,20 +6,27 @@
     <VerticalStackLayout VerticalOptions="Center" Padding="40">
         <Label Text="Twój profil" 
                FontSize="24" 
-               FontAttributes="Bold"/>
+               FontAttributes="Bold"
+               Margin="0,0,0,10"/>
         <Grid RowDefinitions="{OnIdiom '*', Phone='*,*'}" ColumnDefinitions="{OnIdiom '*,*', Phone='*'}">
             <Grid Grid.Row="0" Grid.Column="0"
-                  RowDefinitions="*,*,*,auto" ColumnDefinitions="auto,auto" 
+                  RowDefinitions="*,*,*,*,*,auto" ColumnDefinitions="auto,auto" 
                   RowSpacing="10" ColumnSpacing="10">
-                <Label Text="Email: " 
+                <Label Text="Email:* " 
                        Grid.Row="0" Grid.Column="0"
                        VerticalOptions="Center"/>
-                <Label Text="Imię: " 
+                <Label Text="Imię:* " 
                        Grid.Row="1" Grid.Column="0"
                        VerticalOptions="Center"/>
-                <Label Text="Nazwisko: " 
+                <Label Text="Nazwisko:* " 
                        Grid.Row="2" Grid.Column="0"
                        VerticalOptions="Center"/>
+                <Label Text="Nowe hasło: " 
+                       Grid.Row="3" Grid.Column="0"
+                       VerticalOptions="Center"/>
+                <Label Text="Powtórz hasło: " 
+                       Grid.Row="4" Grid.Column="0"
+                       VerticalOptions="Center"/>       
 
                 <Label Text="{Binding User.Email}" 
                        Grid.Row="0" Grid.Column="1"
@@ -32,9 +39,25 @@
                        Grid.Row="2" Grid.Column="1"
                        VerticalOptions="Center"
                        WidthRequest="200"/>
+                <Entry Text="{Binding NewPassword}" 
+                       Grid.Row="3" Grid.Column="1"
+                       IsPassword="True"
+                       VerticalOptions="Center"
+                       WidthRequest="200"/>
+                <Entry Text="{Binding NewPasswordConfirmation}" 
+                       Grid.Row="4" Grid.Column="1"
+                       IsPassword="True"
+                       VerticalOptions="Center"
+                       WidthRequest="200"/>
 
+                <Entry x:Name="passwordEntry"
+                       Text="{Binding Password}"
+                       Grid.Row="5" Grid.Column="0"
+                       IsPassword="True"
+                       Placeholder="Podaj hasło*"
+                       WidthRequest="100"/>
                 <Button Text="Edytuj informacje"
-                        Grid.Row="3" Grid.ColumnSpan="2"
+                        Grid.Row="5" Grid.Column="1"
                         VerticalOptions="Center" HorizontalOptions="Center"
                         Command="{Binding EditUserCommand}"/>
             </Grid>
