@@ -40,6 +40,7 @@ public partial class NavBar : ContentView
         if (App.LoggedUser != null)//obs³uga wylogowania siê
         {
             App.LoggedUser = null;
+            File.Delete(App.LoggedUserJsonFilePath);
             PageAppearing();
         }
         else//otwarcie strony rejestracji
