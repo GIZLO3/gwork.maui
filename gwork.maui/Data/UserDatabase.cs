@@ -10,7 +10,7 @@ namespace gwork.maui.Data
 {
     public class UserDatabase
     {
-        SQLiteAsyncConnection? Database;
+        SQLiteAsyncConnection Database;
 
         async Task Init()
         {
