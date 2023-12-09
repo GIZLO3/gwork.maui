@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -29,7 +30,7 @@ namespace gwork.maui.ViewModels
                 var success = true;
                 var changePassword = false;
 
-                if (string.IsNullOrEmpty(User.Name) || string.IsNullOrEmpty(User.Surname) || string.IsNullOrEmpty(Password))
+                if (string.IsNullOrEmpty(User.Name) || string.IsNullOrEmpty(User.Surname) || string.IsNullOrEmpty(User.PhoneNumber) || string.IsNullOrEmpty(Password))
                 {
                     success = false;
                     await Shell.Current.DisplayAlert("Błąd", "Uzupełnij wszytkie pola!", "OK");
@@ -45,6 +46,11 @@ namespace gwork.maui.ViewModels
                     {
                         success = false;
                         await Shell.Current.DisplayAlert("Błąd", "Nazwisko musi mieć od 1 do 256 znaków i może zawierać tylko litery i liczby!", "OK");
+                    }
+                    if (!Regex.IsMatch(User.PhoneNumber, @"^([0-9]{9})$"))
+                    {
+                        success = false;
+                        await Shell.Current.DisplayAlert("Błąd", "Błędny numer telefonu", "OK");
                     }
                     if (!PasswordService.VerifyPassword(Password, App.LoggedUser.Password, App.LoggedUser.Salt))
                     {
@@ -71,8 +77,7 @@ namespace gwork.maui.ViewModels
 
                 if (success)
                 {
-                    App.LoggedUser.Name = User.Name;
-                    App.LoggedUser.Surname = User.Surname;
+                    App.LoggedUser = User;
 
                     if(changePassword)
                     {

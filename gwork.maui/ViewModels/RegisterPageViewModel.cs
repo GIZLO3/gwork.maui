@@ -4,6 +4,7 @@ using gwork.maui.Data;
 using gwork.maui.Models;
 using gwork.maui.Services;
 using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
 
 namespace gwork.maui.ViewModels
 {
@@ -12,14 +13,14 @@ namespace gwork.maui.ViewModels
         private UserDatabase userDatabase = new UserDatabase();
 
         [ObservableProperty]
-        string? email, name, surname, password, password2;
+        string? email, name, surname, phoneNumber, password, password2;
 
         [RelayCommand]
         async Task Register()
         {
             var success = true;
 
-            if (string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(Surname) || string.IsNullOrWhiteSpace(Password) || string.IsNullOrWhiteSpace(Password2))
+            if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Surname) || string.IsNullOrEmpty(PhoneNumber) || string.IsNullOrEmpty(Password) || string.IsNullOrEmpty(Password2))
             {
                 success = false;
                 await Shell.Current.DisplayAlert("Błąd", "Uzupełnij wszytkie pola!", "OK");
@@ -40,6 +41,11 @@ namespace gwork.maui.ViewModels
                 {
                     success = false;
                     await Shell.Current.DisplayAlert("Błąd", "Nazwisko musi mieć od 1 do 256 znaków i może zawierać tylko litery i liczby!", "OK");
+                }
+                if(!Regex.IsMatch(PhoneNumber, @"^([0-9]{9})$"))
+                {
+                    success = false;
+                    await Shell.Current.DisplayAlert("Błąd", "Błędny numer telefonu", "OK");
                 }
                 if (Password.Length < 8)
                 {
