@@ -16,11 +16,29 @@ namespace gwork.maui.ViewModels
 {
     public partial class UserDetailsPageViewModel : ObservableObject
     {
+        EmployeeDetailsDatabase employeeDetailsDatabase = new();
+
         [ObservableProperty]
         User user = (User)App.LoggedUser.Clone();
 
         [ObservableProperty]
         string? password, newPassword, newPasswordConfirmation;
+
+        [ObservableProperty]
+        EmployeeDetails employeeDetails = new();
+
+        public UserDetailsPageViewModel()
+        {
+            GetEmployeeDetails();
+        }
+
+        private async void GetEmployeeDetails()
+        {
+            var employeeDetails = await employeeDetailsDatabase.GetEmpleyeeDetailsAsync(User.DetailsId);
+
+            if(employeeDetails != null)
+                EmployeeDetails = employeeDetails;
+        }
 
         [RelayCommand]
         async Task EditUser()
@@ -92,6 +110,35 @@ namespace gwork.maui.ViewModels
                     await Shell.Current.GoToAsync("..");
                     await Shell.Current.GoToAsync(nameof(UserDetailsPage));
                 }
+            }
+        }
+
+        [RelayCommand]
+        async Task EditEmployeeDetails()
+        {
+            var success = true;
+
+            if (string.IsNullOrEmpty(EmployeeDetails.Education))
+            {
+                success = false;
+                await Shell.Current.DisplayAlert("Błąd", "Uzupełnij wszytkie pola!", "OK");
+            }
+            else
+            {
+                
+            }
+
+            if (success)
+            {
+                var detailsId = await employeeDetailsDatabase.SaveEmpleyeeDetailsAsync(EmployeeDetails);
+
+                if (App.LoggedUser.DetailsId == 0)
+                    App.LoggedUser.DetailsId = detailsId;
+
+                JsonService.WriteFile(App.LoggedUser, App.LoggedUserJsonFilePath);
+
+                await Shell.Current.GoToAsync("..");
+                await Shell.Current.GoToAsync(nameof(UserDetailsPage));
             }
         }
     }
