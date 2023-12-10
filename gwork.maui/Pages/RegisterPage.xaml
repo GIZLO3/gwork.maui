@@ -3,60 +3,59 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="gwork.maui.Pages.RegisterPage"
              Shell.NavBarIsVisible="False">
-    <ScrollView VerticalOptions="Center">
-        <Grid RowDefinitions="auto, auto, auto, auto, auto, auto, auto, auto" ColumnDefinitions="*" RowSpacing="10">
-            <Label Text="Zarejestruj się do G-work" Grid.Row="0" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold"/>
+    <ScrollView VerticalOptions="Center" HorizontalOptions="Center">
+        <Grid RowDefinitions="auto,*,*,*,*,*,*,auto" ColumnDefinitions="auto,auto" 
+              RowSpacing="10" ColumnSpacing="10"
+              VerticalOptions="Center" HorizontalOptions="Center">
 
-            <StackLayout Orientation="Horizontal" Grid.Row="1" HorizontalOptions="Center" Spacing="10">
-                <Label Text="Email:" 
-                       VerticalOptions="Center"/>
-                <Entry Text="{Binding Email}"
-                       VerticalOptions="Center"
-                       MinimumWidthRequest="{OnIdiom 220, Desktop=400}"/>
-            </StackLayout>
+            <Label Text="Zarejestruj się do G-work" Grid.Row="0" Grid.ColumnSpan="2" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold"/>
 
-            <StackLayout Orientation="Horizontal" Grid.Row="2" HorizontalOptions="Center" Spacing="10">
-                <Label Text="Imie:" 
-                       VerticalOptions="Center"/>
-                <Entry Text="{Binding Name}" 
-                       VerticalOptions="Center"
-                       MinimumWidthRequest="{OnIdiom 220, Desktop=400}"/>
-            </StackLayout>
+            <Label Text="Email: " 
+                   Grid.Row="1" Grid.Column="0"
+                   VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Label Text="Imię: " 
+                   Grid.Row="2" Grid.Column="0"
+                   VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Label Text="Nazwisko: " 
+                   Grid.Row="3" Grid.Column="0"
+                   VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Label Text="Nr telefonu: " 
+                   Grid.Row="4" Grid.Column="0"
+                   VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Label Text="Hasło: " 
+                   Grid.Row="5" Grid.Column="0"
+                   VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Label Text="Powtórz hasło: " 
+                   Grid.Row="6" Grid.Column="0"
+                   VerticalOptions="Center" HorizontalOptions="Center"/>
 
-            <StackLayout Orientation="Horizontal" Grid.Row="3" HorizontalOptions="Center" Spacing="10">
-                <Label Text="Nazwisko:" 
-                       VerticalOptions="Center"/>
-                <Entry Text="{Binding Surname}" 
-                       VerticalOptions="Center"
-                       MinimumWidthRequest="{OnIdiom 220, Desktop=400}"/>
-            </StackLayout>
+            <Entry Text="{Binding Email}" 
+                   Grid.Row="1" Grid.Column="1"
+                   VerticalOptions="Center"
+                   WidthRequest="{OnIdiom 200, Desktop=400}"/>
+            <Entry Text="{Binding Name}"
+                   Grid.Row="2" Grid.Column="1"
+                   VerticalOptions="Center"
+                   WidthRequest="{OnIdiom 200, Desktop=400}"/>
+            <Entry Text="{Binding Surname}" 
+                   Grid.Row="3" Grid.Column="1"
+                   VerticalOptions="Center"
+                   WidthRequest="{OnIdiom 200, Desktop=400}"/>
+            <Entry Text="{Binding PhoneNumber}" 
+                   Grid.Row="4" Grid.Column="1"
+                   VerticalOptions="Center"
+                   WidthRequest="{OnIdiom 200, Desktop=400}"/>
+            <Entry Text="{Binding Password}" 
+                   Grid.Row="5" Grid.Column="1"
+                   IsPassword="True"
+                   VerticalOptions="Center"
+                   WidthRequest="{OnIdiom 200, Desktop=400}"/>
+            <Entry Text="{Binding Password2}" 
+                   Grid.Row="6" Grid.Column="1"
+                   IsPassword="True"
+                   VerticalOptions="Center"
+                   WidthRequest="{OnIdiom 200, Desktop=400}"/>
 
-            <StackLayout Orientation="Horizontal" Grid.Row="4" HorizontalOptions="Center" Spacing="10">
-                <Label Text="Nr telefonu:" 
-                       VerticalOptions="Center"/>
-                <Entry Text="{Binding PhoneNumber}" 
-                       VerticalOptions="Center"
-                       MinimumWidthRequest="{OnIdiom 220, Desktop=400}"/>   
-            </StackLayout>
-
-            <StackLayout Orientation="Horizontal" Grid.Row="5" HorizontalOptions="Center" Spacing="10">
-                <Label Text="Hasło:" 
-                       VerticalOptions="Center"/>
-                <Entry Text="{Binding Password}"
-                       IsPassword="True" 
-                       VerticalOptions="Center"
-                       MinimumWidthRequest="{OnIdiom 220, Desktop=400}"/>
-            </StackLayout>
-
-            <StackLayout Orientation="Horizontal" Grid.Row="6" HorizontalOptions="Center" Spacing="10">
-                <Label Text="Powtórz hasło:" 
-                       VerticalOptions="Center"/>
-                <Entry Text="{Binding Password2}"
-                       IsPassword="True" 
-                       VerticalOptions="Center"
-                       MinimumWidthRequest="{OnIdiom 220, Desktop=400}"/>
-            </StackLayout>
-            
             <Button Text="Zarejestruj się" 
                     Grid.Row="7" Grid.ColumnSpan="2" 
                     VerticalOptions="Center" HorizontalOptions="Center" 

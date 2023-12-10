@@ -74,6 +74,11 @@
                 <Grid Grid.Row="{OnIdiom '0', Phone='1'}" Grid.Column="{OnIdiom '1', Phone='0'}"
                           RowDefinitions="*,auto" ColumnDefinitions="auto, auto"
                           RowSpacing="10" ColumnSpacing="10">
+                    
+                    <Label Text="Dodatkoe inforamcje" 
+                           FontSize="24" 
+                           FontAttributes="Bold"/>          
+
                     <Label Text="Wykształcenie: " 
                            Grid.Row="0" Grid.Column="0"
                            VerticalOptions="Center"/>
