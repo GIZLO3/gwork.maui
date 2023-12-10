@@ -27,6 +27,12 @@ namespace gwork.maui.ViewModels
         [ObservableProperty]
         EmployeeDetails employeeDetails = new();
 
+        [ObservableProperty]
+        List<string> educationEnumList = Enum.GetNames(typeof(EducationEnum)).ToList();
+
+        [ObservableProperty]
+        string? educationEnumSelected;
+
         public UserDetailsPageViewModel()
         {
             GetEmployeeDetails();
@@ -37,7 +43,10 @@ namespace gwork.maui.ViewModels
             var employeeDetails = await employeeDetailsDatabase.GetEmpleyeeDetailsAsync(User.DetailsId);
 
             if(employeeDetails != null)
+            {
                 EmployeeDetails = employeeDetails;
+                EducationEnumSelected = Enum.GetName(typeof(EducationEnum), EmployeeDetails.Education);
+            }
         }
 
         [RelayCommand]
@@ -51,7 +60,7 @@ namespace gwork.maui.ViewModels
                 if (string.IsNullOrEmpty(User.Name) || string.IsNullOrEmpty(User.Surname) || string.IsNullOrEmpty(User.PhoneNumber) || string.IsNullOrEmpty(Password))
                 {
                     success = false;
-                    await Shell.Current.DisplayAlert("Błąd", "Uzupełnij wszytkie pola!", "OK");
+                    await Shell.Current.DisplayAlert("Błąd", "Uzupełnij wymagane pola!", "OK");
                 }
                 else
                 {
@@ -118,18 +127,17 @@ namespace gwork.maui.ViewModels
         {
             var success = true;
 
-            if (string.IsNullOrEmpty(EmployeeDetails.Education))
+            /*if (string.IsNullOrEmpty(EducationEnumSelected))
             {
                 success = false;
-                await Shell.Current.DisplayAlert("Błąd", "Uzupełnij wszytkie pola!", "OK");
-            }
-            else
-            {
-                
-            }
+                await Shell.Current.DisplayAlert("Błąd", "Uzupełnij wszytkie pola informaji dodatkowych!", "OK");
+            }*/
 
             if (success)
             {
+                if(EducationEnumSelected != null)
+                    EmployeeDetails.Education = Enum.Parse<EducationEnum>(EducationEnumSelected);
+
                 var detailsId = await employeeDetailsDatabase.SaveEmpleyeeDetailsAsync(EmployeeDetails);
 
                 if (App.LoggedUser.DetailsId == 0)

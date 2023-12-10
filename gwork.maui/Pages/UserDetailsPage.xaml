@@ -72,24 +72,54 @@
                 </Grid>
 
                 <Grid Grid.Row="{OnIdiom '0', Phone='1'}" Grid.Column="{OnIdiom '1', Phone='0'}"
-                          RowDefinitions="*,auto" ColumnDefinitions="auto, auto"
+                          RowDefinitions="auto, *,*,*,*,*,auto" ColumnDefinitions="auto, *"
                           RowSpacing="10" ColumnSpacing="10">
                     
-                    <Label Text="Dodatkoe inforamcje" 
+                    <Label Text="Dodatkowe inforamcje"
+                           Grid.Row="0"
                            FontSize="24" 
                            FontAttributes="Bold"/>          
 
                     <Label Text="Wykształcenie: " 
-                           Grid.Row="0" Grid.Column="0"
+                           Grid.Row="1" Grid.Column="0"
+                           VerticalOptions="Center"/>
+                    <Label Text="Aktualna praca: " 
+                           Grid.Row="2" Grid.Column="0" 
+                           VerticalOptions="Center"/>
+                    <Label Text="Podsumowanie zawodowe: " 
+                           Grid.Row="3" Grid.Column="0" 
+                           VerticalOptions="Center"/>
+                    <Label Text="Języki: " 
+                           Grid.Row="4" Grid.Column="0" 
+                           VerticalOptions="Center"/>
+                    <Label Text="Kursy i certyfikaty: " 
+                           Grid.Row="5" Grid.Column="0" 
                            VerticalOptions="Center"/>
 
-                    <Entry Text="{Binding EmployeeDetails.Education}"
-                           Grid.Row="0" Grid.Column="1"
-                           VerticalOptions="Center"
-                           WidthRequest="200"/>
+                    <Picker ItemsSource="{Binding EducationEnumList}"
+                            SelectedItem="{Binding EducationEnumSelected}"
+                            Grid.Row="1" Grid.Column="1"
+                            VerticalOptions="Center"
+                            MinimumWidthRequest="200"/>
+                    <Entry Text="{Binding EmployeeDetails.CurrentJob}" 
+                           Grid.Row="2" Grid.Column="1" 
+                           VerticalOptions="Center" 
+                           MinimumWidthRequest="200"/>
+                    <Entry Text="{Binding EmployeeDetails.ProfessionSummary}" 
+                           Grid.Row="3" Grid.Column="1" 
+                           VerticalOptions="Center" 
+                           MinimumWidthRequest="200"/>
+                    <Entry Text="{Binding EmployeeDetails.Languages}" 
+                           Grid.Row="4" Grid.Column="1" 
+                           VerticalOptions="Center" 
+                           MinimumWidthRequest="200"/>
+                    <Entry Text="{Binding EmployeeDetails.Courses}" 
+                           Grid.Row="5" Grid.Column="1" 
+                           VerticalOptions="Center" 
+                           MinimumWidthRequest="200"/>
 
                     <Button Text="Edytuj informacje"
-                            Grid.Row="1" Grid.ColumnSpan="2"
+                            Grid.Row="6" Grid.ColumnSpan="2"
                             Command="{Binding EditEmployeeDetailsCommand}"/>
                 </Grid>
             </Grid>
