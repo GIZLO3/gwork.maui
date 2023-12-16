@@ -4,7 +4,11 @@
              x:Class="gwork.maui.Controls.NavBar">
     <VerticalStackLayout>
         <StackLayout Orientation="Horizontal">
-            <Label Text="G-work" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontSize="24"/>
+            <Label Text="G-work" 
+                   HorizontalOptions="StartAndExpand" VerticalOptions="Center" 
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="{DynamicResource Primary}"/>
             <Button x:Name="navBarButton1"
                     Margin="5,0" 
                     Clicked="NavBarButton1Clicked"/>

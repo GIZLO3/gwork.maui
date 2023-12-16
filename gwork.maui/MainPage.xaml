@@ -5,14 +5,41 @@
              x:Class="gwork.maui.MainPage">
 
     <ScrollView>
-        <VerticalStackLayout
-            Padding="20,10"
-            Spacing="25">
-            <controls:NavBar x:Name="navBar"/>
+        <VerticalStackLayout>
+            <controls:NavBar x:Name="navBar" Padding="20, 10"/>
 
-            <ListView x:Name="offersListView">
-                
-            </ListView>
+            <VerticalStackLayout Spacing="25">
+                <Rectangle HorizontalOptions="Fill" 
+                           Fill="{AppThemeBinding Light={StaticResource OffBlack}, Dark={StaticResource Gray100}}" 
+                           HeightRequest="2"/>
+
+                <HorizontalStackLayout HorizontalOptions="Center">
+                    <Label Text="1233"
+                       FontSize="26"
+                       FontAttributes="Bold"
+                       TextColor="{DynamicResource Primary}"/>
+                    <Label Text=" sprawdzonych ofert!"
+                       FontSize="24"
+                       FontAttributes="Bold"/>
+                </HorizontalStackLayout>
+
+                <SearchBar Placeholder="Wyszukaj oferty..." 
+                       HorizontalOptions="Center"
+                       WidthRequest="{OnIdiom 300, Desktop=600}"/>
+
+                <CollectionView>
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="2" />
+                    </CollectionView.ItemsLayout>
+                    
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
 
