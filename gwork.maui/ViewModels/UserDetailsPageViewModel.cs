@@ -127,12 +127,6 @@ namespace gwork.maui.ViewModels
         {
             var success = true;
 
-            /*if (string.IsNullOrEmpty(EducationEnumSelected))
-            {
-                success = false;
-                await Shell.Current.DisplayAlert("Błąd", "Uzupełnij wszytkie pola informaji dodatkowych!", "OK");
-            }*/
-
             if (success)
             {
                 if(EducationEnumSelected != null)

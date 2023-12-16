@@ -9,12 +9,12 @@
                FontSize="24" 
                FontAttributes="Bold"
                Margin="0,0,0,10"/>
-            <Grid RowDefinitions="{OnIdiom '*', Phone='*,*'}" ColumnDefinitions="{OnIdiom '*,*', Phone='*'}">
+            <Grid RowDefinitions="{OnIdiom '*', Phone='*,*'}" ColumnDefinitions="{OnIdiom '*,*', Phone='*'}" ColumnSpacing="20">
                 <Grid Grid.Row="0" Grid.Column="0"
-                      RowDefinitions="*,*,*,*,*,*,auto" ColumnDefinitions="auto,auto" 
+                      RowDefinitions="*,*,*,*,*,*,auto" ColumnDefinitions="auto,*" 
                       RowSpacing="10" ColumnSpacing="10">
                     
-                    <Label Text="Email:* " 
+                    <Label Text="Email: " 
                        Grid.Row="0" Grid.Column="0"
                        VerticalOptions="Center"/>
                     <Label Text="Imię:* " 
@@ -39,44 +39,45 @@
                     <Entry Text="{Binding User.Name}"
                        Grid.Row="1" Grid.Column="1"
                        VerticalOptions="Center"
-                       WidthRequest="200"/>
+                       MinimumWidthRequest="200"/>
                     <Entry Text="{Binding User.Surname}" 
                        Grid.Row="2" Grid.Column="1"
                        VerticalOptions="Center"
-                       WidthRequest="200"/>
+                       MinimumWidthRequest="200"/>
                     <Entry Text="{Binding User.PhoneNumber}" 
                        Grid.Row="3" Grid.Column="1"
                        VerticalOptions="Center"
-                       WidthRequest="200"/>
+                       MinimumWidthRequest="200"/>
                     <Entry Text="{Binding NewPassword}" 
                        Grid.Row="4" Grid.Column="1"
                        IsPassword="True"
                        VerticalOptions="Center"
-                       WidthRequest="200"/>
+                       MinimumWidthRequest="200"/>
                     <Entry Text="{Binding NewPasswordConfirmation}" 
                        Grid.Row="5" Grid.Column="1"
                        IsPassword="True"
                        VerticalOptions="Center"
-                       WidthRequest="200"/>
+                       MinimumWidthRequest="200"/>
 
+                    <Button Text="Edytuj informacje"
+                            Grid.Row="6" Grid.Column="0"
+                            VerticalOptions="Center" HorizontalOptions="Center"
+                            Command="{Binding EditUserCommand}"/>
                     <Entry x:Name="passwordEntry"
                        Text="{Binding Password}"
-                       Grid.Row="6" Grid.Column="0"
+                       Grid.Row="6" Grid.Column="1"
                        IsPassword="True"
-                       Placeholder="Podaj hasło*"
-                       WidthRequest="130"/>
-                    <Button Text="Edytuj informacje"
-                        Grid.Row="6" Grid.Column="1"
-                        VerticalOptions="Center" HorizontalOptions="Center"
-                        Command="{Binding EditUserCommand}"/>
+                       Placeholder="Podaj hasło*"/>
+                    
                 </Grid>
 
                 <Grid Grid.Row="{OnIdiom '0', Phone='1'}" Grid.Column="{OnIdiom '1', Phone='0'}"
-                          RowDefinitions="auto, *,*,*,*,*,auto" ColumnDefinitions="auto, *"
+                          RowDefinitions="auto,*,*,*,*,*,auto" ColumnDefinitions="auto, *"
                           RowSpacing="10" ColumnSpacing="10">
                     
-                    <Label Text="Dodatkowe inforamcje"
+                    <Label Text="Dodatkowe informacje"
                            Grid.Row="0"
+                           Grid.ColumnSpan="2"
                            FontSize="24" 
                            FontAttributes="Bold"/>          
 
