@@ -8,11 +8,11 @@
         <VerticalStackLayout>
             <controls:NavBar x:Name="navBar" Padding="20, 10"/>
 
-            <VerticalStackLayout Spacing="25">
-                <Rectangle HorizontalOptions="Fill" 
-                           Fill="{AppThemeBinding Light={StaticResource OffBlack}, Dark={StaticResource Gray100}}" 
-                           HeightRequest="2"/>
+            <Rectangle HorizontalOptions="Fill" 
+                   Fill="{AppThemeBinding Light={StaticResource OffBlack}, Dark={StaticResource Gray100}}" 
+                   HeightRequest="2"/>
 
+            <VerticalStackLayout Spacing="20" Padding="20">
                 <HorizontalStackLayout HorizontalOptions="Center">
                     <Label Text="1233"
                        FontSize="26"
@@ -27,15 +27,38 @@
                        HorizontalOptions="Center"
                        WidthRequest="{OnIdiom 300, Desktop=600}"/>
 
-                <CollectionView>
+                <CollectionView ItemsSource="{Binding Offers}">
                     <CollectionView.ItemsLayout>
-                        <GridItemsLayout Orientation="Vertical" Span="2" />
+                        <GridItemsLayout Orientation="Vertical" Span="{OnIdiom 1, Tablet=2, Desktop=3}" HorizontalItemSpacing="20" VerticalItemSpacing="20"/>
                     </CollectionView.ItemsLayout>
-                    
+
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Grid>
-                            </Grid>
+                            <Frame BorderColor="{DynamicResource Primary}" BackgroundColor="Transparent">
+                                <Grid HeightRequest="180" RowDefinitions="auto, auto, *, auto" RowSpacing="5">
+                                    <StackLayout Grid.Row="0">
+                                        <Label Text="{Binding PositionName}" FontAttributes="Bold" FontSize="16" TextColor="{AppThemeBinding Light={StaticResource SecondaryDarkText}, Dark={StaticResource Secondary}}"/>
+                                        <Label Text="{Binding Firm.Name}" FontAttributes="Bold"/>
+                                        <Label Text="{Binding Firm.Location}"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" Grid.Row="1">
+                                        <Label Text="{Binding SalaryLowest, StringFormat='{0} zł'}"/>
+                                        <Label Text=" - "/>
+                                        <Label Text="{Binding SalaryHighest, StringFormat=' {0} zł'}"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" Grid.Row="2" HorizontalOptions="Fill">
+                                        <Label Text="{Binding Category}"/>
+                                        <Label Text=" - "/>
+                                        <Label Text="{Binding ConcractType}"/>
+                                        <Label Text=" - "/>
+                                        <Label Text="{Binding Description}"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" Grid.Row="3">
+                                        <Button Text="Do oferty" HorizontalOptions="StartAndExpand"/>
+                                        <Label Text="{Binding ExpireDate, StringFormat='Koniec rekrutacji: {0:dd/MM/yyyy}'}" HorizontalOptions="End" VerticalTextAlignment="End"/>
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>

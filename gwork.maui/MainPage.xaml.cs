@@ -1,4 +1,5 @@
 ﻿using gwork.maui.Controls;
+using gwork.maui.ViewModels;
 
 namespace gwork.maui
 {
@@ -7,6 +8,7 @@ namespace gwork.maui
         public MainPage()
         {
             InitializeComponent();
+            BindingContext = new MainPageViewModel();
         }
         protected override void OnAppearing()
         {
