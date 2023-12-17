@@ -18,6 +18,6 @@ namespace gwork.maui.Models
         public string? Description { get; set; }
         public decimal? SalaryLowest { get; set; }
         public decimal? SalaryHighest { get; set; }
-        public Firm? Firm { get; set; }
+        //public Firm? Firm { get; set; }
     }
 }

@@ -73,6 +73,7 @@ namespace gwork.maui.ViewModels
                 user.Email = Email;
                 user.Name = Name;
                 user.Surname = Surname;
+                user.PhoneNumber = PhoneNumber;
                 user.Password = PasswordService.HashPasword(Password, out var salt);
                 user.Salt = salt;    
                 await userDatabase.InsertUserAsync(user);

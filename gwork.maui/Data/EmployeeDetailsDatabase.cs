@@ -31,9 +31,17 @@ namespace gwork.maui.Data
         {
             await Init();
             if (employeeDetails.Id != 0)
-                return await Database.UpdateAsync(employeeDetails);
+            {
+                await Database.UpdateAsync(employeeDetails);
+                return employeeDetails.Id;
+            }     
             else
-                return await Database.InsertAsync(employeeDetails);
+            {
+                await Database.InsertAsync(employeeDetails);
+                var lastAdded = await Database.Table<EmployeeDetails>().OrderByDescending(x => x.Id).FirstOrDefaultAsync();
+                return lastAdded.Id;
+            }
+                
         }
     }
 }

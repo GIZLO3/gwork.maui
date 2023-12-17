@@ -42,11 +42,13 @@ namespace gwork.maui.ViewModels
         {
             var employeeDetails = await employeeDetailsDatabase.GetEmpleyeeDetailsAsync(User.DetailsId);
 
-            if(employeeDetails != null)
+            if (employeeDetails != null)
             {
                 EmployeeDetails = employeeDetails;
                 EducationEnumSelected = Enum.GetName(typeof(EducationEnum), EmployeeDetails.Education);
             }
+            else
+                employeeDetails = new EmployeeDetails();
         }
 
         [RelayCommand]
@@ -133,10 +135,11 @@ namespace gwork.maui.ViewModels
                     EmployeeDetails.Education = Enum.Parse<EducationEnum>(EducationEnumSelected);
 
                 var detailsId = await employeeDetailsDatabase.SaveEmpleyeeDetailsAsync(EmployeeDetails);
-
-                if (App.LoggedUser.DetailsId == 0)
+                if(App.LoggedUser.DetailsId == 0)
                     App.LoggedUser.DetailsId = detailsId;
 
+                var userDatabase = new UserDatabase();
+                await userDatabase.UdateUserAsync(App.LoggedUser);
                 JsonService.WriteFile(App.LoggedUser, App.LoggedUserJsonFilePath);
 
                 await Shell.Current.GoToAsync("..");
