@@ -15,10 +15,10 @@ namespace gwork.maui.ViewModels
         private UserDatabase userDatabase = new UserDatabase();
 
         [ObservableProperty]
-        string? email, password;
+        private string? email, password;
 
         [RelayCommand]
-        async Task Login()
+        private async Task Login()
         {
             if (string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password))
             {

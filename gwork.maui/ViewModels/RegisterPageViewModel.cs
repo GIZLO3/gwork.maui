@@ -13,10 +13,10 @@ namespace gwork.maui.ViewModels
         private UserDatabase userDatabase = new UserDatabase();
 
         [ObservableProperty]
-        string? email, name, surname, phoneNumber, password, password2;
+        private string? email, name, surname, phoneNumber, password, password2;
 
         [RelayCommand]
-        async Task Register()
+        private async Task Register()
         {
             var success = true;
 

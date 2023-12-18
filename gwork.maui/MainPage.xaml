@@ -16,12 +16,12 @@
             <VerticalStackLayout Spacing="20" Padding="20">
                 <HorizontalStackLayout HorizontalOptions="Center">
                     <Label Text="{Binding OffersCount}"
-                       FontSize="26"
-                       FontAttributes="Bold"
-                       TextColor="{DynamicResource Primary}"/>
+                           FontSize="26"
+                           FontAttributes="Bold"
+                           TextColor="{DynamicResource Primary}"/>
                     <Label Text=" sprawdzonych ofert!"
-                       FontSize="24"
-                       FontAttributes="Bold"/>
+                           FontSize="24"
+                           FontAttributes="Bold"/>
                 </HorizontalStackLayout>
 
                 <SearchBar Placeholder="Wyszukaj oferty..." 

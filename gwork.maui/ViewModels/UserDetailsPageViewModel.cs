@@ -16,22 +16,22 @@ namespace gwork.maui.ViewModels
 {
     public partial class UserDetailsPageViewModel : ObservableObject
     {
-        EmployeeDetailsDatabase employeeDetailsDatabase = new();
+        private EmployeeDetailsDatabase employeeDetailsDatabase = new();
 
         [ObservableProperty]
-        User user = (User)App.LoggedUser.Clone();
+        private User user = (User)App.LoggedUser.Clone();
 
         [ObservableProperty]
-        string? password, newPassword, newPasswordConfirmation;
+        private string? password, newPassword, newPasswordConfirmation;
 
         [ObservableProperty]
-        EmployeeDetails employeeDetails = new();
+        private EmployeeDetails employeeDetails = new();
 
         [ObservableProperty]
-        List<string> educationEnumList = Enum.GetNames(typeof(EducationEnum)).ToList();
+        private List<string> educationEnumList = Enum.GetNames(typeof(EducationEnum)).ToList();
 
         [ObservableProperty]
-        string? educationEnumSelected;
+        private string? educationEnumSelected;
 
         public UserDetailsPageViewModel()
         {

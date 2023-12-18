@@ -5,7 +5,9 @@
              Shell.NavBarIsVisible="False">
     <ScrollView>
         <VerticalStackLayout Padding="20">
-            <Label />
+            <Label Text="{Binding Offer.PositionName}"
+                   FontSize="24"
+                   TextColor="{DynamicResource Primary}"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

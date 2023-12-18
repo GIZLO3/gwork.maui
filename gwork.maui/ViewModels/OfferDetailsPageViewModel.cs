@@ -22,8 +22,7 @@ namespace gwork.maui.ViewModels
         {
             GetOffer();
         }
-
-        async void GetOffer()
+        private async void GetOffer()
         {
             if(OfferId != null)
             {

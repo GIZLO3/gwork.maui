@@ -12,7 +12,7 @@ namespace gwork.maui.ViewModels
     public partial class AdminPanelPageViewModel : ObservableObject
     {
         [RelayCommand]
-        void GoToAddOfferPage()
+        private void GoToAddOfferPage()
         {
             Shell.Current.GoToAsync(nameof(AddOrEditOfferPage));
         }

@@ -15,10 +15,10 @@ namespace gwork.maui.ViewModels
     public partial class MainPageViewModel : ObservableObject
     {
         [ObservableProperty]
-        ObservableCollection<Offer>? offers;
+        private ObservableCollection<Offer>? offers;
 
         [ObservableProperty]
-        int offersCount;
+        private int offersCount;
 
         public async void GetOffers()
         {
@@ -33,7 +33,7 @@ namespace gwork.maui.ViewModels
         }
 
         [RelayCommand]
-        async Task GoToOfferDetails(object commandParameter)
+        private async Task GoToOfferDetails(object commandParameter)
         {
             var offer = commandParameter as Offer;
             if(offer != null)

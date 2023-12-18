@@ -13,22 +13,22 @@ namespace gwork.maui.ViewModels
     public partial class AddOrEditOfferPageViewModel : ObservableObject
     {
         [ObservableProperty]
-        string? positionName, category, description, firmName, firmLocation;
+        private string? positionName, category, description, firmName, firmLocation;
 
         [ObservableProperty]
-        DateTime expireDate = DateTime.Now;
+        private DateTime expireDate = DateTime.Now;
 
         [ObservableProperty]
-        decimal salaryLowest, salaryHighest;
+        private decimal salaryLowest, salaryHighest;
 
         [ObservableProperty]
-        List<string> concractTypeEnumList = Enum.GetNames(typeof(ConcractTypeEnum)).ToList();
+        private List<string> concractTypeEnumList = Enum.GetNames(typeof(ConcractTypeEnum)).ToList();
 
         [ObservableProperty]
-        string concractTypeEnumSelected = "";
+        private string concractTypeEnumSelected = "";
 
         [ObservableProperty]
-        string? mode;
+        private string? mode;
 
         private readonly bool EditMode;
         public AddOrEditOfferPageViewModel()
@@ -38,7 +38,7 @@ namespace gwork.maui.ViewModels
         }
 
         [RelayCommand]
-        async Task AddOrEditOffer()
+        private async Task AddOrEditOffer()
         {
             var success = true;
 
