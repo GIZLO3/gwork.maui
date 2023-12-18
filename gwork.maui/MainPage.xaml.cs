@@ -1,6 +1,7 @@
 ﻿using gwork.maui.Controls;
 using gwork.maui.Data;
 using gwork.maui.Models;
+using gwork.maui.Services;
 using gwork.maui.ViewModels;
 using System.Text.Json;
 
@@ -17,7 +18,20 @@ namespace gwork.maui
         {
             base.OnAppearing();
 
-            if (File.Exists(App.LoggedUserJsonFilePath))
+            var userDatabase = new UserDatabase();
+
+            var storedAdmin = await userDatabase.GetUserAsync("admin@admin");//sprawdzanie czy istnieje admin
+            if( storedAdmin == null || !storedAdmin.IsAdmin)
+            {
+                var admin = new User();
+                admin.Email = "admin@admin";
+                admin.Password = PasswordService.HashPasword("12345678", out var salt);
+                admin.Salt = salt;
+                admin.IsAdmin = true;
+                await userDatabase.InsertUserAsync(admin);
+            }
+
+            if (File.Exists(App.LoggedUserJsonFilePath))//zprawdzanie zalogowanego uzytkownika z pliku
             {
                 StreamReader streamReader = new(App.LoggedUserJsonFilePath);
                 var json = streamReader.ReadToEnd();
@@ -26,7 +40,6 @@ namespace gwork.maui
 
                 if (localUser != null)
                 {
-                    var userDatabase = new UserDatabase();
                     var storedUser = await userDatabase.GetUserAsync(localUser.Email);//pobranie z bazy uzytkownika 
 
                     if (storedUser != null)

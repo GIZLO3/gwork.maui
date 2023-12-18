@@ -15,6 +15,15 @@ public partial class NavBar : ContentView
         {
             navBarButton1.Text = "Profil";
             navBarButton2.Text = "Wyloguj siê";
+
+            if(App.LoggedUser.IsAdmin)
+            {
+                var adminPanelButton = new Button();
+                adminPanelButton.Text = "Panel admina";
+                adminPanelButton.Clicked += NavBarAdminPanelButtonClicked;
+
+                mainVerticalStackLayout.Children.Add(adminPanelButton);
+            }
         }
         else
         {
@@ -47,5 +56,10 @@ public partial class NavBar : ContentView
         {
             Shell.Current.GoToAsync(nameof(RegisterPage));
         }
+    }
+
+    private void NavBarAdminPanelButtonClicked(object sender, EventArgs e)
+    {
+        Shell.Current.DisplayAlert("admin", "", "ok");
     }
 }

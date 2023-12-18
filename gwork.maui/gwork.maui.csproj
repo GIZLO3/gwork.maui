@@ -66,6 +66,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="Pages\AdminPages\" />
 	  <Folder Include="Resources\Images\" />
 	</ItemGroup>
 
