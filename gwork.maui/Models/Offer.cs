@@ -12,12 +12,13 @@ namespace gwork.maui.Models
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string? PositionName { get; set; }
-        public ConcractType ConcractType { get; set; }
+        public ConcractTypeEnum ConcractType { get; set; }
         public DateTime ExpireDate { get; set; }
         public string? Category { get; set; }
         public string? Description { get; set; }
         public decimal? SalaryLowest { get; set; }
         public decimal? SalaryHighest { get; set; }
-        //public Firm? Firm { get; set; }
+        public string? FirmName { get; set; }
+        public string? FirmLocation { get; set; }
     }
 }

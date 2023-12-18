@@ -40,7 +40,10 @@ namespace gwork.maui
                 }
             }
 
-            (navBar as NavBar)?.PageAppearing();
+            navBar.PageAppearing();
+
+            if (BindingContext is MainPageViewModel mainPageViewModel)
+                mainPageViewModel.GetOffers();
         }
     }
 }

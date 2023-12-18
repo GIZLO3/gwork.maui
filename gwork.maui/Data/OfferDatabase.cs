@@ -27,5 +27,11 @@ namespace gwork.maui.Data
             await Init();
             return new ObservableCollection<Offer>(await Database.Table<Offer>().ToListAsync());
         }
+
+        public async Task<int> InsertOfferAsync(Offer offer)
+        {
+            await Init();
+            return await Database.InsertAsync(offer);
+        }
     }
 }

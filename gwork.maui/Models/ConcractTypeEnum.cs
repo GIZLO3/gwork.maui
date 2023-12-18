@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace gwork.maui.Models
 {
-    public enum ConcractType
+    public enum ConcractTypeEnum
     {
         umowa_o_prace,
         umowa_zlecenie,

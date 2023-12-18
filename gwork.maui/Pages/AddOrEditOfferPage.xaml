@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="gwork.maui.Pages.AddOrEditOfferPage"
+             Shell.NavBarIsVisible="False">
+    <ScrollView VerticalOptions="Center" HorizontalOptions="Center">
+        <Grid RowDefinitions="auto,*,*,*,*,*,*,*,*,*,auto" ColumnDefinitions="auto,auto" 
+              RowSpacing="10" ColumnSpacing="10"
+              VerticalOptions="Center" HorizontalOptions="Center">
+
+            <Label Text="{Binding Mode}" Grid.Row="0" Grid.ColumnSpan="2" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold"/>
+
+            <Label Text="Pozycja: " 
+                   Grid.Row="1" Grid.Column="0"
+                   VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Label Text="Typ kontraktu: " 
+                   Grid.Row="2" Grid.Column="0"
+                   VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Label Text="Data końca rekrutacji: " 
+                   Grid.Row="3" Grid.Column="0"
+                   VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Label Text="Kategoria: " 
+                   Grid.Row="4" Grid.Column="0"
+                   VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Label Text="Opis: " 
+                   Grid.Row="5" Grid.Column="0"
+                   VerticalOptions="Center" HorizontalOptions="Center"/>    
+            <Label Text="Wynagrodzenie od: " 
+                   Grid.Row="6" Grid.Column="0"
+                   VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Label Text="Wynagrodzenie do: " 
+                   Grid.Row="7" Grid.Column="0"
+                   VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Label Text="Nazwa firmy: " 
+                   Grid.Row="8" Grid.Column="0"
+                   VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Label Text="Lokalizacja firmy: " 
+                   Grid.Row="9" Grid.Column="0"
+                   VerticalOptions="Center" HorizontalOptions="Center"/>
+
+            <Entry Text="{Binding PositionName}" 
+                   Grid.Row="1" Grid.Column="1"
+                   VerticalOptions="Center"
+                   WidthRequest="{OnIdiom 200, Desktop=400}"/>
+            <Picker ItemsSource="{Binding ConcractTypeEnumList}"
+                    SelectedItem="{Binding ConcractTypeEnumSelected}"
+                    Grid.Row="2" Grid.Column="1"
+                    VerticalOptions="Center"
+                    WidthRequest="{OnIdiom 200, Desktop=400}"/>
+            <DatePicker Date="{Binding ExpireDate}" 
+                        Grid.Row="3" Grid.Column="1"
+                        VerticalOptions="Center"
+                        WidthRequest="{OnIdiom 200, Desktop=400}"/>
+            <Entry Text="{Binding Category}" 
+                   Grid.Row="4" Grid.Column="1"
+                   VerticalOptions="Center"
+                   WidthRequest="{OnIdiom 200, Desktop=400}"/>      
+            <Entry Text="{Binding Description}" 
+                   Grid.Row="5" Grid.Column="1"
+                   VerticalOptions="Center"
+                   WidthRequest="{OnIdiom 200, Desktop=400}"/>
+            <Entry Text="{Binding SalaryLowest}" 
+                   Grid.Row="6" Grid.Column="1"
+                   VerticalOptions="Center"
+                   Keyboard="Numeric"
+                   TextChanged="OnTextChanged"
+                   WidthRequest="{OnIdiom 200, Desktop=400}"/>
+            <Entry Text="{Binding SalaryHighest}" 
+                   Grid.Row="7" Grid.Column="1"
+                   VerticalOptions="Center"
+                   Keyboard="Numeric"
+                   TextChanged="OnTextChanged"
+                   WidthRequest="{OnIdiom 200, Desktop=400}"/>
+            <Entry Text="{Binding FirmName}" 
+                   Grid.Row="8" Grid.Column="1"
+                   VerticalOptions="Center"
+                   WidthRequest="{OnIdiom 200, Desktop=400}"/>
+            <Entry Text="{Binding FirmLocation}" 
+                   Grid.Row="9" Grid.Column="1"
+                   VerticalOptions="Center"
+                   WidthRequest="{OnIdiom 200, Desktop=400}"/>
+
+            <Button Text="{Binding Mode}" 
+                    Grid.Row="11" Grid.ColumnSpan="2" 
+                    VerticalOptions="Center" HorizontalOptions="Center" 
+                    Command="{Binding AddOrEditOfferCommand}"/>
+        </Grid>
+    </ScrollView>
+</ContentPage>

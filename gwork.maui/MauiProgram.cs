@@ -24,6 +24,7 @@ namespace gwork.maui
             builder.Services.AddTransient<LogInPage>();
             builder.Services.AddTransient<RegisterPage>();
             builder.Services.AddTransient<UserDetailsPage>();
+            builder.Services.AddTransient<AddOrEditOfferPage>();
 
 #if DEBUG
     		builder.Logging.AddDebug();
