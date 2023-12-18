@@ -13,7 +13,6 @@ namespace gwork.maui.Models
         public string? PhoneNumber { get ; set; }
         public int DetailsId { get; set; }
         public bool IsAdmin { get; set; } = false;
-
         public object Clone()
         {
             return this.MemberwiseClone();

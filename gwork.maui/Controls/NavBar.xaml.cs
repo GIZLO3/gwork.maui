@@ -1,10 +1,13 @@
 using gwork.maui.Pages;
+using gwork.maui.Pages.AdminPages;
 
 namespace gwork.maui.Controls;
 
 public partial class NavBar : ContentView
 {
-	public NavBar()
+    private Button? adminPanelButton;
+
+    public NavBar()
 	{
 		InitializeComponent();
 	}
@@ -16,9 +19,9 @@ public partial class NavBar : ContentView
             navBarButton1.Text = "Profil";
             navBarButton2.Text = "Wyloguj siê";
 
-            if(App.LoggedUser.IsAdmin)
+            if(App.LoggedUser.IsAdmin && adminPanelButton == null)
             {
-                var adminPanelButton = new Button();
+                adminPanelButton = new Button();
                 adminPanelButton.Text = "Panel admina";
                 adminPanelButton.Clicked += NavBarAdminPanelButtonClicked;
 
@@ -60,6 +63,6 @@ public partial class NavBar : ContentView
 
     private void NavBarAdminPanelButtonClicked(object sender, EventArgs e)
     {
-        Shell.Current.DisplayAlert("admin", "", "ok");
+        Shell.Current.GoToAsync(nameof(AdminPanelPage));
     }
 }

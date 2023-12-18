@@ -17,6 +17,9 @@ namespace gwork.maui.ViewModels
         [ObservableProperty]
         ObservableCollection<Offer>? offers;
 
+        [ObservableProperty]
+        int offersCount;
+
         public async void GetOffers()
         {
             var offerDatabase = new OfferDatabase();
@@ -25,12 +28,18 @@ namespace gwork.maui.ViewModels
                 Offers = offers;
             else
                 Offers = new();
+
+            OffersCount = Offers.Count();
         }
 
         [RelayCommand]
-        void GoToOffers()
+        async Task GoToOfferDetails(object commandParameter)
         {
-            Shell.Current.GoToAsync(nameof(AddOrEditOfferPage));
+            var offer = commandParameter as Offer;
+            if(offer != null)
+            {
+                await Shell.Current.GoToAsync($"{nameof(OfferDetailsPage)}?OfferId={offer.Id}");
+            }
         }
     }
 }
