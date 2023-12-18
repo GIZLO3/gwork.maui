@@ -3,7 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:gwork.maui.Controls"
              xmlns:viewmodels="clr-namespace:gwork.maui.ViewModels"
+             xmlns:services="clr-namespace:gwork.maui.Services"
              x:Class="gwork.maui.MainPage">
+
+    <ContentPage.Resources>
+        <services:BindingStringReplaceFloorService x:Key="replaceFloor" />
+    </ContentPage.Resources>
 
     <ScrollView>
         <VerticalStackLayout>
@@ -38,20 +43,23 @@
                             <Frame BorderColor="{DynamicResource Primary}" BackgroundColor="Transparent">
                                 <Grid HeightRequest="180" RowDefinitions="auto, auto, *, auto" RowSpacing="3">
                                     <StackLayout Grid.Row="0">
-                                        <Label Text="{Binding PositionName}" FontAttributes="Bold" FontSize="16" TextColor="{AppThemeBinding Light={StaticResource SecondaryDarkText}, Dark={StaticResource Secondary}}"/>
+                                        <Label Text="{Binding PositionName}" FontAttributes="Bold" FontSize="16" HorizontalOptions="FillAndExpand" LineBreakMode="TailTruncation" TextColor="{AppThemeBinding Light={StaticResource SecondaryDarkText}, Dark={StaticResource Secondary}}"/>
                                         <Label Text="{Binding FirmName}" FontAttributes="Bold"/>
                                         <Label Text="{Binding FirmLocation}"/>
                                     </StackLayout>
-                                    <StackLayout Orientation="Horizontal" Grid.Row="1">
-                                        <Label Text="{Binding SalaryLowest, StringFormat='{0} zł'}" TextColor="{AppThemeBinding Light={StaticResource SecondaryDarkText}, Dark={StaticResource Secondary}}"/>
-                                        <Label Text=" -" TextColor="{AppThemeBinding Light={StaticResource SecondaryDarkText}, Dark={StaticResource Secondary}}"/>
-                                        <Label Text="{Binding SalaryHighest, StringFormat=' {0} zł'}" TextColor="{AppThemeBinding Light={StaticResource SecondaryDarkText}, Dark={StaticResource Secondary}}"/>
-                                    </StackLayout>
+                                    <Label Grid.Row="1" TextColor="{AppThemeBinding Light={StaticResource SecondaryDarkText}, Dark={StaticResource Secondary}}">
+                                        <Label.Text>
+                                            <MultiBinding StringFormat="{}{0} - {1} zł">
+                                                <Binding Path="SalaryLowest"/>
+                                                <Binding Path="SalaryHighest"/>
+                                            </MultiBinding>
+                                        </Label.Text>
+                                    </Label>
                                     <Label Grid.Row="2" HorizontalOptions="FillAndExpand" LineBreakMode="CharacterWrap">
                                         <Label.Text>
                                             <MultiBinding StringFormat="{}{0} | {1} | {2}">
                                                 <Binding Path="Category"/>
-                                                <Binding Path="ConcractType"/>
+                                                <Binding Path="ConcractType" Converter="{StaticResource replaceFloor}"/>
                                                 <Binding Path="Description"/>
                                             </MultiBinding>
                                         </Label.Text>

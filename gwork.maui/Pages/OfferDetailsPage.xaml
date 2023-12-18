@@ -2,12 +2,51 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="gwork.maui.Pages.OfferDetailsPage"
+             xmlns:services="clr-namespace:gwork.maui.Services"
              Shell.NavBarIsVisible="False">
+    
+    <ContentPage.Resources>
+        <services:BindingStringReplaceFloorService x:Key="replaceFloor" />
+    </ContentPage.Resources>
+    
     <ScrollView>
-        <VerticalStackLayout Padding="20">
+        <VerticalStackLayout Padding="{OnIdiom 50, Phone=20}" Spacing="5" VerticalOptions="Center">
             <Label Text="{Binding Offer.PositionName}"
-                   FontSize="24"
-                   TextColor="{DynamicResource Primary}"/>
+                   FontSize="{OnIdiom 32, Phone=24}"
+                   TextColor="{DynamicResource Primary}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="FillAndExpand"
+                   LineBreakMode="WordWrap"/>
+            <Label Text="{Binding Offer.FirmName, StringFormat='Firma: {0}'}"
+                   FontSize="{OnIdiom 16, Phone=14}"/>
+            <Label Text="{Binding Offer.Description}"
+                   FontSize="{OnIdiom 16, Phone=14}"
+                   HorizontalOptions="FillAndExpand"
+                   LineBreakMode="WordWrap"/>
+
+            <Label FontAttributes="Bold" Margin="0,10"
+                   FontSize="{OnIdiom 16, Phone=14}">
+                <Label.Text>
+                    <MultiBinding StringFormat="{}Wynagrodzenie: {0} - {1} zł">
+                        <Binding Path="Offer.SalaryLowest"/>
+                        <Binding Path="Offer.SalaryHighest"/>
+                    </MultiBinding>
+                </Label.Text>
+            </Label>
+
+            <Label Text="{Binding Offer.FirmLocation, StringFormat='Lokalizacja: {0}'}"
+                   FontSize="{OnIdiom 16, Phone=14}"/>
+            <Label Text="{Binding Offer.Category, StringFormat='Kategoria: {0}'}"
+                   FontSize="{OnIdiom 16, Phone=14}"/>
+            <Label Text="{Binding Offer.ConcractType, StringFormat='Umowa: {0}', Converter={StaticResource replaceFloor}}"
+                   FontSize="{OnIdiom 16, Phone=14}"/>
+            
+            <Button Text="Aplikuj" 
+                    Margin="0,20,0,0" 
+                    FontSize="{OnIdiom 16, Phone=14}"/>
+
+            <Label Text="{Binding Offer.ExpireDate, StringFormat=' Koniec rekrutacji: {0:dd/MM/yyyy}'}" VerticalOptions="End"
+                   FontSize="{OnIdiom 16, Phone=14}"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
