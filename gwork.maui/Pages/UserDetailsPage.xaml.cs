@@ -10,4 +10,15 @@ public partial class UserDetailsPage : ContentPage
 		InitializeComponent();
 		BindingContext = new UserDetailsPageViewModel();
 	}
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+		if(BindingContext is UserDetailsPageViewModel userDetailsPageViewModel)
+		{
+			userDetailsPageViewModel.GetEmployeeDetails();
+			userDetailsPageViewModel.GetAppliedOffers();
+		}
+    }
 }

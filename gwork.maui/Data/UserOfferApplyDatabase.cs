@@ -22,17 +22,24 @@ namespace gwork.maui.Data
             var result = await Database.CreateTableAsync<UserOfferApply>();
         }
 
-        public async Task<ObservableCollection<UserOfferApply>> GetOffersAsync()
+        public async Task<ObservableCollection<UserOfferApply>> GetUserOffersAppliedAsync()
         {
             await Init();
             return new ObservableCollection<UserOfferApply>(await Database.Table<UserOfferApply>().ToListAsync());
         }
-        public async Task<UserOfferApply> GetOfferAsync(int userId, int offerId)
+        public async Task<UserOfferApply> GetUserOfferApplyAsync(int userId, int offerId)
         {
             await Init();
             return await Database.Table<UserOfferApply>().Where(u => u.UserId == userId && u.OfferId == offerId).FirstOrDefaultAsync();
         }
-        public async Task<int> SaveOfferAsync(UserOfferApply userOfferApply)
+
+        public async Task<List<UserOfferApply>> GetUserOffersAppliedAsync(int userId)
+        {
+            await Init();
+            return await Database.Table<UserOfferApply>().Where(u => u.UserId == userId).ToListAsync();
+        }
+
+        public async Task<int> SaveUserOfferApplyAsync(UserOfferApply userOfferApply)
         {
             await Init();
             if (userOfferApply.Id != 0)
@@ -45,7 +52,7 @@ namespace gwork.maui.Data
             }
         }
 
-        public async Task<int> DeleteOfferAsync(UserOfferApply userOfferApply)
+        public async Task<int> DeleteUserOfferApplyAsync(UserOfferApply userOfferApply)
         {
             await Init();
             return await Database.DeleteAsync(userOfferApply);

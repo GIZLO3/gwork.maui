@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -16,8 +17,6 @@ namespace gwork.maui.ViewModels
 {
     public partial class UserDetailsPageViewModel : ObservableObject
     {
-        private EmployeeDetailsDatabase employeeDetailsDatabase = new();
-
         [ObservableProperty]
         private User user = (User)App.LoggedUser.Clone();
 
@@ -33,12 +32,14 @@ namespace gwork.maui.ViewModels
         [ObservableProperty]
         private string? educationEnumSelected;
 
-        public UserDetailsPageViewModel()
-        {
-            GetEmployeeDetails();
-        }
+        [ObservableProperty]
+        private ObservableCollection<Offer>? appliedOffers;
 
-        private async void GetEmployeeDetails()
+        private EmployeeDetailsDatabase employeeDetailsDatabase = new();
+        private UserOfferApplyDatabase userOfferApplyDatabase = new();
+        private OfferDatabase offerDatabase = new();
+
+        public async void GetEmployeeDetails()
         {
             var employeeDetails = await employeeDetailsDatabase.GetEmpleyeeDetailsAsync(User.DetailsId);
 
@@ -49,8 +50,24 @@ namespace gwork.maui.ViewModels
             }
         }
 
+        public async void GetAppliedOffers()
+        {
+            var userOffersApplied = await userOfferApplyDatabase.GetUserOffersAppliedAsync(User.Id);
+
+            var appliedOffers = new ObservableCollection<Offer>();
+            foreach (var userOfferApply in userOffersApplied)
+            {
+
+                var offer = await offerDatabase.GetOfferAsync(userOfferApply.OfferId);
+                if (offer != null)
+                    appliedOffers.Add(offer);
+            }
+
+            AppliedOffers = appliedOffers;
+        }
+
         [RelayCommand]
-        async Task EditUser()
+        private async Task EditUser()
         {
             if (User != null)
             {
@@ -126,7 +143,7 @@ namespace gwork.maui.ViewModels
         }
 
         [RelayCommand]
-        async Task EditEmployeeDetails()
+        private async Task EditEmployeeDetails()
         {
             var success = true;
 
@@ -144,6 +161,34 @@ namespace gwork.maui.ViewModels
                 JsonService.WriteFile(App.LoggedUser, App.LoggedUserJsonFilePath);
 
                 await Shell.Current.DisplayAlert("Informacja", "Pomyślnie edytowano dane", "OK");
+            }
+        }
+
+        [RelayCommand]
+        private async Task GoToOfferDetails(object commandParameter)
+        {
+            var offer = commandParameter as Offer;
+            if (offer != null)
+            {
+                await Shell.Current.GoToAsync($"{nameof(OfferDetailsPage)}?OfferId={offer.Id}");
+            }
+        }
+
+        [RelayCommand]
+        private async Task DeleteUserOfferApply(object commandParameter)
+        {
+            var offer = commandParameter as Offer;
+            if (offer != null)
+            {
+                var result = await Shell.Current.DisplayAlert("Ostrzeżenie", $"Czy na pewno anulować: {offer.PositionName}?", "Tak", "Nie");
+                if (result)
+                {
+                    var userOfferApply = await userOfferApplyDatabase.GetUserOfferApplyAsync(User.Id, offer.Id);
+                    if(userOfferApply != null)
+                        await userOfferApplyDatabase.DeleteUserOfferApplyAsync(userOfferApply);
+
+                    GetAppliedOffers();
+                }
             }
         }
     }

@@ -30,8 +30,10 @@
                 </HorizontalStackLayout>
 
                 <SearchBar Placeholder="Wyszukaj oferty..." 
-                       HorizontalOptions="Center"
-                       WidthRequest="{OnIdiom 300, Desktop=600}"/>
+                           SearchCommand="{Binding SearchOfferCommand}"
+                           SearchCommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"
+                           HorizontalOptions="Center"
+                           WidthRequest="{OnIdiom 300, Desktop=600}"/>
 
                 <CollectionView ItemsSource="{Binding Offers}">
                     <CollectionView.ItemsLayout>

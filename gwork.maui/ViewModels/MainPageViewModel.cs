@@ -20,6 +20,9 @@ namespace gwork.maui.ViewModels
         [ObservableProperty]
         private int offersCount;
 
+        [ObservableProperty]
+        private string? searchBarText;
+
         public async void GetOffers()
         {
             var offerDatabase = new OfferDatabase();
@@ -40,6 +43,12 @@ namespace gwork.maui.ViewModels
             {
                 await Shell.Current.GoToAsync($"{nameof(OfferDetailsPage)}?OfferId={offer.Id}");
             }
+        }
+
+        [RelayCommand]
+        private async Task SearchOffer(object commandParameter)
+        {
+            var text = (string)commandParameter;
         }
     }
 }

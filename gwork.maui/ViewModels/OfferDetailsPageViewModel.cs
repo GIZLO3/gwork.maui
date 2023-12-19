@@ -41,14 +41,14 @@ namespace gwork.maui.ViewModels
                 {
                     var userOfferApplyDatabase = new UserOfferApplyDatabase();
 
-                    var storedUserOfferApply = await userOfferApplyDatabase.GetOfferAsync(App.LoggedUser.Id, Offer.Id);
+                    var storedUserOfferApply = await userOfferApplyDatabase.GetUserOfferApplyAsync(App.LoggedUser.Id, Offer.Id);
                     if(storedUserOfferApply == null)
                     {
                         var userOfferApply = new UserOfferApply();
                         userOfferApply.UserId = App.LoggedUser.Id;
                         userOfferApply.OfferId = Offer.Id;
 
-                        await userOfferApplyDatabase.SaveOfferAsync(userOfferApply);
+                        await userOfferApplyDatabase.SaveUserOfferApplyAsync(userOfferApply);
                         await Shell.Current.DisplayAlert("Informacja", "Pomyślnie aplkowano o pracę", "OK");
                     }
                     else

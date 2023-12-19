@@ -91,6 +91,7 @@
                                     <Button Text="Usuń" 
                                             Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:OffersListPageViewModel}}, Path=DeleteOfferCommand}"
                                             CommandParameter="{Binding .}"
+                                            BackgroundColor="#D21F3C"
                                             HorizontalOptions="EndAndExpand"/>
                                 </StackLayout>
                             </Frame>
