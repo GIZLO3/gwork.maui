@@ -34,6 +34,12 @@ namespace gwork.maui.Data
             return await Database.Table<Offer>().Where(o => o.Id == Id).FirstOrDefaultAsync();
         }
 
+        public async Task<ObservableCollection<Offer>> GetOffersAsyncBySearchText(string searchText)
+        {
+            await Init();
+            return new ObservableCollection<Offer>(await Database.Table<Offer>().Where(o => o.PositionName.ToLower().Contains(searchText) || o.Description.ToLower().Contains(searchText) || o.FirmLocation.ToLower().Contains(searchText) || o.FirmName.ToLower().Contains(searchText)).ToListAsync());
+        }
+
         public async Task<int> InsertOfferAsync(Offer offer)
         {
             await Init();

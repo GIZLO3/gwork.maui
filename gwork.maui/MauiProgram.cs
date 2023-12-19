@@ -30,6 +30,7 @@ namespace gwork.maui
             builder.Services.AddTransient<AdminPanelPage>();
             builder.Services.AddTransient<AddOrEditOfferPage>();
             builder.Services.AddTransient<OffersListPage>();
+            builder.Services.AddTransient<UserOfferApplyListPage>();
 
 #if DEBUG
             builder.Logging.AddDebug();

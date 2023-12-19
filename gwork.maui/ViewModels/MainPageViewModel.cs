@@ -23,9 +23,11 @@ namespace gwork.maui.ViewModels
         [ObservableProperty]
         private string? searchBarText;
 
+        private OfferDatabase offerDatabase = new();
+
         public async void GetOffers()
         {
-            var offerDatabase = new OfferDatabase();
+            
             var offers = await offerDatabase.GetOffersAsync();
             if (offers != null)
                 Offers = offers;
@@ -48,7 +50,19 @@ namespace gwork.maui.ViewModels
         [RelayCommand]
         private async Task SearchOffer(object commandParameter)
         {
-            var text = (string)commandParameter;
+            var searchText = (string)commandParameter;
+            if (string.IsNullOrEmpty(searchText))
+            {
+                GetOffers();
+            }
+            else
+            {
+                var offers = await offerDatabase.GetOffersAsyncBySearchText(searchText.ToLower());
+                if (offers != null)
+                    Offers = offers;
+                else
+                    Offers = new();
+            }
         }
     }
 }

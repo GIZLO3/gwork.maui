@@ -22,6 +22,12 @@ namespace gwork.maui.ViewModels
         private void GoToAddOffersListPage()
         {
             Shell.Current.GoToAsync(nameof(OffersListPage));
-        } 
+        }
+
+        [RelayCommand]
+        private void GoToUserOfferApplyListPage()
+        {
+            Shell.Current.GoToAsync(nameof(UserOfferApplyListPage));
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace gwork.maui.Data
             var result = await Database.CreateTableAsync<UserOfferApply>();
         }
 
-        public async Task<ObservableCollection<UserOfferApply>> GetUserOffersAppliedAsync()
+        public async Task<ObservableCollection<UserOfferApply>> GetUserOffersAppliesAsync()
         {
             await Init();
             return new ObservableCollection<UserOfferApply>(await Database.Table<UserOfferApply>().ToListAsync());

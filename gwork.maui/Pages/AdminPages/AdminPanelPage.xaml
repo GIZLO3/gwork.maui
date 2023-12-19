@@ -3,10 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="gwork.maui.Pages.AdminPages.AdminPanelPage"
              Shell.NavBarIsVisible="False">
-    <VerticalStackLayout Padding="20" Spacing="15">
-        <Label Text="Panel Admina G-work" FontSize="24" TextColor="{DynamicResource Primary}" HorizontalOptions="Center"/>
+    <VerticalStackLayout Padding="20" HorizontalOptions="Center">
+        <Frame BorderColor="{DynamicResource Primary}" BackgroundColor="Transparent">
+            <VerticalStackLayout Spacing="15"> 
+                <Label Text="Panel Admina G-work" FontSize="24" TextColor="{DynamicResource Primary}" HorizontalOptions="Center"/>
 
-        <Button Text="Dodaj ofertę" Command="{Binding GoToAddOfferPageCommand}"/>
-        <Button Text="Zarządzaj ofertami" Command="{Binding GoToAddOffersListPageCommand}"/>
+                <Button Text="Dodaj ofertę" Command="{Binding GoToAddOfferPageCommand}"/>
+                <Button Text="Zarządzaj ofertami" Command="{Binding GoToAddOffersListPageCommand}"/>
+                <Button Text="Zarządzaj aplikacjami o pracę" Command="{Binding GoToUserOfferApplyListPageCommand}"/>
+            </VerticalStackLayout>
+        </Frame>
     </VerticalStackLayout>
 </ContentPage>
