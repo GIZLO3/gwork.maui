@@ -39,5 +39,24 @@ namespace gwork.maui.Data
             await Init();
             return await Database.InsertAsync(offer);
         }
+
+        public async Task<int> SaveOfferAsync(Offer offer)
+        {
+            await Init();
+            if (offer.Id != 0)
+            {
+                return await Database.UpdateAsync(offer);
+            }
+            else
+            {
+                return await Database.InsertAsync(offer);
+            }
+        }
+
+        public async Task<int> DeleteOfferAsync(Offer offer)
+        {
+            await Init();
+            return await Database.DeleteAsync(offer);
+        }
     }
 }

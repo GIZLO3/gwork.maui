@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:gwork.maui.ViewModels"
+             x:Class="gwork.maui.Pages.AdminPages.OffersListPage"
+             Shell.NavBarIsVisible="False">
+    <ScrollView Orientation="Both" HorizontalScrollBarVisibility="Always">
+        <VerticalStackLayout>
+            <Label Text="Zarządzaj ofertami" 
+                   FontSize="24" 
+                   TextColor="{DynamicResource Primary}" 
+                   HorizontalOptions="Center"/>
+
+            <CollectionView ItemsSource="{Binding Offers}" Margin="40" HorizontalOptions="FillAndExpand">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.Header>
+                    <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,200" MinimumWidthRequest="1200">
+                        <Frame Grid.Column="0" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                            <Label Text="Id"/>
+                        </Frame>
+                        <Frame Grid.Column="1" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                            <Label Text="PositionName"/>
+                        </Frame>
+                        <Frame Grid.Column="2" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                            <Label Text="ConcractType"/>
+                        </Frame>
+                        <Frame Grid.Column="3" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                            <Label Text="ExpireDate"/>
+                        </Frame>
+                        <Frame Grid.Column="4" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                            <Label Text="Category"/>
+                        </Frame>
+                        <Frame Grid.Column="5" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                            <Label Text="Salary"/>
+                        </Frame>
+                        <Frame Grid.Column="6" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                            <Label Text="FirmName"/>
+                        </Frame>
+                        <Frame Grid.Column="7" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                            <Label Text="FirmLocation"/>
+                        </Frame>
+                        <Frame Grid.Column="8" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                            <Label Text="Zarządzaj"/>
+                        </Frame>
+                    </Grid>
+                </CollectionView.Header>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,200" MinimumWidthRequest="1200">
+                            <Frame Grid.Column="0" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                                <Label Text="{Binding Id}"/>
+                            </Frame>
+                            <Frame Grid.Column="1" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                                <Label Text="{Binding PositionName}"/>
+                            </Frame>
+                            <Frame Grid.Column="2" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                                <Label Text="{Binding ConcractType}"/>
+                            </Frame>
+                            <Frame Grid.Column="3" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                                <Label Text="{Binding ExpireDate, StringFormat='{0:dd/MM/yyyy}'}"/>
+                            </Frame>
+                            <Frame Grid.Column="4" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                                <Label Text="{Binding Category}"/>
+                            </Frame>
+                            <Frame Grid.Column="5" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                                <Label>
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}{0} - {1} zł">
+                                            <Binding Path="SalaryLowest"/>
+                                            <Binding Path="SalaryHighest"/>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                            </Frame>
+                            <Frame Grid.Column="6" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                                <Label Text="{Binding FirmName}"/>
+                            </Frame>
+                            <Frame Grid.Column="7" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                                <Label Text="{Binding FirmLocation }"/>
+                            </Frame>
+                            <Frame Grid.Column="8" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                                <StackLayout Orientation="Horizontal">
+                                    <Button Text="Edytuj" 
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:OffersListPageViewModel}}, Path=GoToOfferEditPageCommand}"
+                                            CommandParameter="{Binding .}"
+                                            HorizontalOptions="StartAndExpand"/>
+                                    <Button Text="Usuń" 
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:OffersListPageViewModel}}, Path=DeleteOfferCommand}"
+                                            CommandParameter="{Binding .}"
+                                            HorizontalOptions="EndAndExpand"/>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

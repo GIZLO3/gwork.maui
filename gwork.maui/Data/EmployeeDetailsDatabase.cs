@@ -40,8 +40,7 @@ namespace gwork.maui.Data
                 await Database.InsertAsync(employeeDetails);
                 var lastAdded = await Database.Table<EmployeeDetails>().OrderByDescending(x => x.Id).FirstOrDefaultAsync();
                 return lastAdded.Id;
-            }
-                
+            }     
         }
     }
 }

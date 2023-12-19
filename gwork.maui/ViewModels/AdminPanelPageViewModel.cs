@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using gwork.maui.Pages;
+using gwork.maui.Pages.AdminPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,11 @@ namespace gwork.maui.ViewModels
         {
             Shell.Current.GoToAsync(nameof(AddOrEditOfferPage));
         }
+
+        [RelayCommand]
+        private void GoToAddOffersListPage()
+        {
+            Shell.Current.GoToAsync(nameof(OffersListPage));
+        } 
     }
 }

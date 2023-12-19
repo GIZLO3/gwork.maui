@@ -38,7 +38,7 @@
                    Grid.Row="9" Grid.Column="0"
                    VerticalOptions="Center" HorizontalOptions="Center"/>
 
-            <Entry Text="{Binding PositionName}" 
+            <Entry Text="{Binding Offer.PositionName}" 
                    Grid.Row="1" Grid.Column="1"
                    VerticalOptions="Center"
                    WidthRequest="{OnIdiom 200, Desktop=400}"/>
@@ -47,35 +47,35 @@
                     Grid.Row="2" Grid.Column="1"
                     VerticalOptions="Center"
                     WidthRequest="{OnIdiom 200, Desktop=400}"/>
-            <DatePicker Date="{Binding ExpireDate}" 
+            <DatePicker Date="{Binding Offer.ExpireDate}" 
                         Grid.Row="3" Grid.Column="1"
                         VerticalOptions="Center"
                         WidthRequest="{OnIdiom 200, Desktop=400}"/>
-            <Entry Text="{Binding Category}" 
+            <Entry Text="{Binding Offer.Category}" 
                    Grid.Row="4" Grid.Column="1"
                    VerticalOptions="Center"
-                   WidthRequest="{OnIdiom 200, Desktop=400}"/>      
-            <Entry Text="{Binding Description}" 
+                   WidthRequest="{OnIdiom 200, Desktop=400}"/>
+            <Entry Text="{Binding Offer.Description}" 
                    Grid.Row="5" Grid.Column="1"
                    VerticalOptions="Center"
                    WidthRequest="{OnIdiom 200, Desktop=400}"/>
-            <Entry Text="{Binding SalaryLowest}" 
+            <Entry Text="{Binding Offer.SalaryLowest}" 
                    Grid.Row="6" Grid.Column="1"
                    VerticalOptions="Center"
                    Keyboard="Numeric"
                    TextChanged="OnTextChanged"
                    WidthRequest="{OnIdiom 200, Desktop=400}"/>
-            <Entry Text="{Binding SalaryHighest}" 
+            <Entry Text="{Binding Offer.SalaryHighest}" 
                    Grid.Row="7" Grid.Column="1"
                    VerticalOptions="Center"
                    Keyboard="Numeric"
                    TextChanged="OnTextChanged"
                    WidthRequest="{OnIdiom 200, Desktop=400}"/>
-            <Entry Text="{Binding FirmName}" 
+            <Entry Text="{Binding Offer.FirmName}" 
                    Grid.Row="8" Grid.Column="1"
                    VerticalOptions="Center"
                    WidthRequest="{OnIdiom 200, Desktop=400}"/>
-            <Entry Text="{Binding FirmLocation}" 
+            <Entry Text="{Binding Offer.FirmLocation}" 
                    Grid.Row="9" Grid.Column="1"
                    VerticalOptions="Center"
                    WidthRequest="{OnIdiom 200, Desktop=400}"/>

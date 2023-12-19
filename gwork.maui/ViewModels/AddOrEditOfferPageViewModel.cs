@@ -10,16 +10,14 @@ using System.Threading.Tasks;
 
 namespace gwork.maui.ViewModels
 {
+    [QueryProperty(nameof(OfferId), nameof(OfferId))]
     public partial class AddOrEditOfferPageViewModel : ObservableObject
     {
         [ObservableProperty]
-        private string? positionName, category, description, firmName, firmLocation;
+        private string? offerId;
 
         [ObservableProperty]
-        private DateTime expireDate = DateTime.Now;
-
-        [ObservableProperty]
-        private decimal salaryLowest, salaryHighest;
+        private Offer offer = new() { ExpireDate = DateTime.Now };
 
         [ObservableProperty]
         private List<string> concractTypeEnumList = Enum.GetNames(typeof(ConcractTypeEnum)).ToList();
@@ -30,10 +28,23 @@ namespace gwork.maui.ViewModels
         [ObservableProperty]
         private string? mode;
 
-        private readonly bool EditMode;
-        public AddOrEditOfferPageViewModel()
+        private OfferDatabase offerDatabase = new();
+
+        partial void OnOfferIdChanged(string? value)
         {
-            EditMode = false;
+            SetUpEditMode();
+        }
+
+        private async void SetUpEditMode()
+        {
+            Mode = "Edytuj ofertę";
+
+            Offer = await offerDatabase.GetOfferAsync(int.Parse(OfferId));
+            ConcractTypeEnumSelected = Enum.GetName(typeof(ConcractTypeEnum), Offer.ConcractType);
+        }
+        
+        public AddOrEditOfferPageViewModel()
+        { 
             Mode = "Dodaj ofertę";
         }
 
@@ -42,31 +53,17 @@ namespace gwork.maui.ViewModels
         {
             var success = true;
 
-            if (string.IsNullOrEmpty(PositionName) || string.IsNullOrEmpty(ConcractTypeEnumSelected)  || string.IsNullOrEmpty(Category) || string.IsNullOrEmpty(Description) || string.IsNullOrEmpty(SalaryLowest.ToString()) || string.IsNullOrEmpty(SalaryHighest.ToString()) || string.IsNullOrEmpty(FirmName) || string.IsNullOrEmpty(FirmLocation))
+            if (string.IsNullOrEmpty(Offer.PositionName) || string.IsNullOrEmpty(ConcractTypeEnumSelected)  || string.IsNullOrEmpty(Offer.Category) || string.IsNullOrEmpty(Offer.Description) || string.IsNullOrEmpty(Offer.SalaryLowest.ToString()) || string.IsNullOrEmpty(Offer.SalaryHighest.ToString()) || string.IsNullOrEmpty(Offer.FirmName) || string.IsNullOrEmpty(Offer.FirmLocation))
             {
                 success = false;
                 await Shell.Current.DisplayAlert("Błąd", "Uzupełnij wymagane pola!", "OK");
             }
 
-            if (EditMode && success)
+            if(success)
             {
+                Offer.ConcractType = Enum.Parse<ConcractTypeEnum>(ConcractTypeEnumSelected);
+                await offerDatabase.SaveOfferAsync(Offer);
 
-            }
-            else if(success)
-            {
-                var offer = new Offer();
-                offer.PositionName = PositionName;
-                offer.ConcractType = Enum.Parse<ConcractTypeEnum>(ConcractTypeEnumSelected);
-                offer.ExpireDate = ExpireDate;
-                offer.Category = Category;
-                offer.Description = Description;
-                offer.SalaryLowest = SalaryLowest;
-                offer.SalaryHighest = SalaryHighest;
-                offer.FirmName = FirmName;
-                offer.FirmLocation = FirmLocation;
-
-                var offerDatabase = new OfferDatabase();
-                await offerDatabase.InsertOfferAsync(offer);
                 await Shell.Current.GoToAsync("..");
             }
         }

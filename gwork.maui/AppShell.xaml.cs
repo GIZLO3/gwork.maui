@@ -16,6 +16,7 @@ namespace gwork.maui
             
             Routing.RegisterRoute(nameof(AdminPanelPage), typeof(AdminPanelPage));
             Routing.RegisterRoute(nameof(AddOrEditOfferPage), typeof(AddOrEditOfferPage));
+            Routing.RegisterRoute(nameof(OffersListPage), typeof(OffersListPage));
         }
     }
 }

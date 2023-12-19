@@ -7,5 +7,6 @@
         <Label Text="Panel Admina G-work" FontSize="24" TextColor="{DynamicResource Primary}" HorizontalOptions="Center"/>
 
         <Button Text="Dodaj ofertę" Command="{Binding GoToAddOfferPageCommand}"/>
+        <Button Text="Zarządzaj ofertami" Command="{Binding GoToAddOffersListPageCommand}"/>
     </VerticalStackLayout>
 </ContentPage>
