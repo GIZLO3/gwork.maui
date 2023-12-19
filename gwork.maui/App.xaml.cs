@@ -1,7 +1,4 @@
-﻿using gwork.maui.Data;
-using gwork.maui.Models;
-using gwork.maui.Services;
-using System.Text.Json;
+﻿using gwork.maui.Models;
 
 namespace gwork.maui
 {
@@ -13,19 +10,6 @@ namespace gwork.maui
         public App()
         {
             InitializeComponent();
-
-            /*if (File.Exists(LoggedUserJsonFilePath))
-            {
-                StreamReader streamReader = new(LoggedUserJsonFilePath);
-                var json = streamReader.ReadToEnd();
-                var localUser = JsonSerializer.Deserialize<User>(json);
-                streamReader.Close();
-
-                if (localUser != null)
-                {
-                    LoggedUser = localUser;
-                }
-            }*/
             MainPage = new AppShell();
         }
     }

@@ -1,4 +1,5 @@
 ﻿using SQLite;
+
 namespace gwork.maui.Models
 {
     public class User : ICloneable
