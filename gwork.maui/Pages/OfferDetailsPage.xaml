@@ -41,7 +41,8 @@
             <Label Text="{Binding Offer.ConcractType, StringFormat='Umowa: {0}', Converter={StaticResource replaceFloor}}"
                    FontSize="{OnIdiom 16, Phone=14}"/>
             
-            <Button Text="Aplikuj" 
+            <Button Text="Aplikuj"
+                    Command="{Binding ApplyForOfferCommand}"
                     Margin="0,20,0,0" 
                     FontSize="{OnIdiom 16, Phone=14}"/>
 

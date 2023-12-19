@@ -47,8 +47,6 @@ namespace gwork.maui.ViewModels
                 EmployeeDetails = employeeDetails;
                 EducationEnumSelected = Enum.GetName(typeof(EducationEnum), EmployeeDetails.Education);
             }
-            else
-                employeeDetails = new EmployeeDetails();
         }
 
         [RelayCommand]
@@ -112,14 +110,17 @@ namespace gwork.maui.ViewModels
                     {
                         App.LoggedUser.Password = PasswordService.HashPasword(NewPassword, out var salt);
                         App.LoggedUser.Salt = salt;
+
+                        NewPassword = "";
+                        NewPasswordConfirmation = "";
                     }
 
                     var userDatabase = new UserDatabase();
                     await userDatabase.UdateUserAsync(App.LoggedUser);
                     JsonService.WriteFile(App.LoggedUser, App.LoggedUserJsonFilePath);
+                    Password = "";
 
-                    await Shell.Current.GoToAsync("..");
-                    await Shell.Current.GoToAsync(nameof(UserDetailsPage));
+                    await Shell.Current.DisplayAlert("Informacja", "Pomyślnie edytowano dane", "OK");
                 }
             }
         }
@@ -142,8 +143,7 @@ namespace gwork.maui.ViewModels
                 await userDatabase.UdateUserAsync(App.LoggedUser);
                 JsonService.WriteFile(App.LoggedUser, App.LoggedUserJsonFilePath);
 
-                await Shell.Current.GoToAsync("..");
-                await Shell.Current.GoToAsync(nameof(UserDetailsPage));
+                await Shell.Current.DisplayAlert("Informacja", "Pomyślnie edytowano dane", "OK");
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using gwork.maui.Data;
 using gwork.maui.Models;
 using System;
@@ -28,6 +29,37 @@ namespace gwork.maui.ViewModels
             {
                 var offerDatabase = new OfferDatabase();
                 Offer = await offerDatabase.GetOfferAsync(int.Parse(OfferId));
+            }
+        }
+
+        [RelayCommand]
+        private async Task ApplyForOffer()
+        {
+            if(App.LoggedUser != null)
+            {
+                if(Offer != null)
+                {
+                    var userOfferApplyDatabase = new UserOfferApplyDatabase();
+
+                    var storedUserOfferApply = await userOfferApplyDatabase.GetOfferAsync(App.LoggedUser.Id, Offer.Id);
+                    if(storedUserOfferApply == null)
+                    {
+                        var userOfferApply = new UserOfferApply();
+                        userOfferApply.UserId = App.LoggedUser.Id;
+                        userOfferApply.OfferId = Offer.Id;
+
+                        await userOfferApplyDatabase.SaveOfferAsync(userOfferApply);
+                        await Shell.Current.DisplayAlert("Informacja", "Pomyślnie aplkowano o pracę", "OK");
+                    }
+                    else
+                    {
+                        await Shell.Current.DisplayAlert("Błąd", "Już aplikowałeś o tą pracę", "OK");
+                    }
+                }
+            }
+            else
+            {
+                await Shell.Current.DisplayAlert("Błąd", "Zaloguj się aby aplikować o pracę", "OK");
             }
         }
     }

@@ -51,6 +51,12 @@ public partial class NavBar : ContentView
     {
         if (App.LoggedUser != null)//obs³uga wylogowania siê
         {
+            if (App.LoggedUser.IsAdmin && adminPanelButton != null)
+            {
+                mainVerticalStackLayout.Children.Remove(adminPanelButton);
+                adminPanelButton = null;
+            }
+
             App.LoggedUser = null;
             File.Delete(App.LoggedUserJsonFilePath);
             PageAppearing();

@@ -5,125 +5,135 @@
              Shell.NavBarIsVisible="False">
     <ScrollView>
         <VerticalStackLayout VerticalOptions="Center" Padding="40">
-            <Label Text="Twój profil" 
+            <Label Text="Twój profil G-work" 
                FontSize="24" 
                FontAttributes="Bold"
                Margin="0,0,0,10"/>
-            <Grid RowDefinitions="{OnIdiom '*', Phone='*,*'}" ColumnDefinitions="{OnIdiom '*,*', Phone='*'}" 
+            <Grid RowDefinitions="{OnIdiom '*,*', Phone='*,*,*'}" ColumnDefinitions="{OnIdiom '*,*', Phone='*'}" 
                   ColumnSpacing="20" RowSpacing="15">
-                <Grid Grid.Row="0" Grid.Column="0"
-                      RowDefinitions="*,*,*,*,*,*,auto" ColumnDefinitions="auto,*" 
-                      RowSpacing="10" ColumnSpacing="10">
-                    
-                    <Label Text="Email: " 
+                <Frame Grid.Row="0" Grid.Column="0"
+                       BorderColor="{DynamicResource Primary}" BackgroundColor="Transparent">
+                    <Grid RowDefinitions="*,*,*,*,*,*,auto" ColumnDefinitions="auto,*" 
+                          RowSpacing="10" ColumnSpacing="10">
+                        <Label Text="Email: " 
                            Grid.Row="0" Grid.Column="0"
                            VerticalOptions="Center"/>
-                    <Label Text="Imię:* " 
+                        <Label Text="Imię:* " 
                            Grid.Row="1" Grid.Column="0"
                            VerticalOptions="Center"/>
-                    <Label Text="Nazwisko:* " 
+                        <Label Text="Nazwisko:* " 
                            Grid.Row="2" Grid.Column="0"
                            VerticalOptions="Center"/>
-                    <Label Text="Nr telefonu:* " 
+                        <Label Text="Nr telefonu:* " 
                            Grid.Row="3" Grid.Column="0"
                            VerticalOptions="Center"/>
-                    <Label Text="Nowe hasło: " 
+                        <Label Text="Nowe hasło: " 
                            Grid.Row="4" Grid.Column="0"
                            VerticalOptions="Center"/>
-                    <Label Text="Powtórz hasło: " 
+                        <Label Text="Powtórz hasło: " 
                            Grid.Row="5" Grid.Column="0"
                            VerticalOptions="Center"/>
 
-                    <Label Text="{Binding User.Email}" 
+                        <Label Text="{Binding User.Email}" 
                            Grid.Row="0" Grid.Column="1"
                            VerticalOptions="Center"/>
-                    <Entry Text="{Binding User.Name}"
+                        <Entry Text="{Binding User.Name}"
                            Grid.Row="1" Grid.Column="1"
                            VerticalOptions="Center"
                            MinimumWidthRequest="200"/>
-                    <Entry Text="{Binding User.Surname}" 
+                        <Entry Text="{Binding User.Surname}" 
                            Grid.Row="2" Grid.Column="1"
                            VerticalOptions="Center"
                            MinimumWidthRequest="200"/>
-                    <Entry Text="{Binding User.PhoneNumber}" 
+                        <Entry Text="{Binding User.PhoneNumber}" 
                            Grid.Row="3" Grid.Column="1"
                            VerticalOptions="Center"
                            MinimumWidthRequest="200"/>
-                    <Entry Text="{Binding NewPassword}" 
+                        <Entry Text="{Binding NewPassword}" 
                            Grid.Row="4" Grid.Column="1"
                            IsPassword="True"
                            VerticalOptions="Center"
                            MinimumWidthRequest="200"/>
-                    <Entry Text="{Binding NewPasswordConfirmation}" 
+                        <Entry Text="{Binding NewPasswordConfirmation}" 
                            Grid.Row="5" Grid.Column="1"
                            IsPassword="True"
                            VerticalOptions="Center"
                            MinimumWidthRequest="200"/>
 
-                    <Button Text="Edytuj informacje"
+                        <Button Text="Edytuj informacje"
                             Grid.Row="6" Grid.Column="0"
                             VerticalOptions="Center" HorizontalOptions="Center"
                             Command="{Binding EditUserCommand}"/>
-                    <Entry x:Name="passwordEntry"
+                        <Entry x:Name="passwordEntry"
                            Text="{Binding Password}"
                            Grid.Row="6" Grid.Column="1"
                            IsPassword="True"
                            Placeholder="Podaj hasło*"/>
+                    </Grid>
+                </Frame>
 
-                </Grid>
-
-                <Grid Grid.Row="{OnIdiom '0', Phone='1'}" Grid.Column="{OnIdiom '1', Phone='0'}"
-                          RowDefinitions="auto,*,*,*,*,*,auto" ColumnDefinitions="auto, *"
+                <Frame Grid.Row="{OnIdiom '0', Phone='1'}" Grid.Column="{OnIdiom '1', Phone='0'}" 
+                       BorderColor="{DynamicResource Primary}" BackgroundColor="Transparent">
+                    <Grid RowDefinitions="auto,*,*,*,*,*,auto" ColumnDefinitions="auto, *"
                           RowSpacing="10" ColumnSpacing="10">
-                    
-                    <Label Text="Dodatkowe informacje"
+
+                        <Label Text="Dodatkowe informacje"
                            Grid.Row="0"
                            Grid.ColumnSpan="2"
                            FontSize="24" 
-                           FontAttributes="Bold"/>          
+                           FontAttributes="Bold"/>
 
-                    <Label Text="Wykształcenie: " 
+                        <Label Text="Wykształcenie: " 
                            Grid.Row="1" Grid.Column="0"
                            VerticalOptions="Center"/>
-                    <Label Text="Aktualna praca: " 
+                        <Label Text="Aktualna praca: " 
                            Grid.Row="2" Grid.Column="0" 
                            VerticalOptions="Center"/>
-                    <Label Text="Podsumowanie zawodowe: " 
+                        <Label Text="Podsumowanie zawodowe: " 
                            Grid.Row="3" Grid.Column="0" 
                            VerticalOptions="Center"/>
-                    <Label Text="Języki: " 
+                        <Label Text="Języki: " 
                            Grid.Row="4" Grid.Column="0" 
                            VerticalOptions="Center"/>
-                    <Label Text="Kursy i certyfikaty: " 
+                        <Label Text="Kursy i certyfikaty: " 
                            Grid.Row="5" Grid.Column="0" 
                            VerticalOptions="Center"/>
 
-                    <Picker ItemsSource="{Binding EducationEnumList}"
-                            SelectedItem="{Binding EducationEnumSelected}"
-                            Grid.Row="1" Grid.Column="1"
-                            VerticalOptions="Center"
-                            MinimumWidthRequest="200"/>
-                    <Entry Text="{Binding EmployeeDetails.CurrentJob}" 
+                        <Picker ItemsSource="{Binding EducationEnumList}"
+                                SelectedItem="{Binding EducationEnumSelected}"
+                                Grid.Row="1" Grid.Column="1"
+                                VerticalOptions="Center"
+                                MinimumWidthRequest="200"/>
+                        <Entry Text="{Binding EmployeeDetails.CurrentJob}" 
                            Grid.Row="2" Grid.Column="1" 
                            VerticalOptions="Center" 
                            MinimumWidthRequest="200"/>
-                    <Entry Text="{Binding EmployeeDetails.ProfessionSummary}" 
+                        <Entry Text="{Binding EmployeeDetails.ProfessionSummary}" 
                            Grid.Row="3" Grid.Column="1" 
                            VerticalOptions="Center" 
                            MinimumWidthRequest="200"/>
-                    <Entry Text="{Binding EmployeeDetails.Languages}" 
+                        <Entry Text="{Binding EmployeeDetails.Languages}" 
                            Grid.Row="4" Grid.Column="1" 
                            VerticalOptions="Center" 
                            MinimumWidthRequest="200"/>
-                    <Entry Text="{Binding EmployeeDetails.Courses}" 
+                        <Entry Text="{Binding EmployeeDetails.Courses}" 
                            Grid.Row="5" Grid.Column="1" 
                            VerticalOptions="Center" 
                            MinimumWidthRequest="200"/>
 
-                    <Button Text="Edytuj informacje"
+                        <Button Text="Edytuj informacje"
                             Grid.Row="6" Grid.ColumnSpan="2"
                             Command="{Binding EditEmployeeDetailsCommand}"/>
-                </Grid>
+                    </Grid>
+                </Frame>
+
+                <Frame Grid.Row="{OnIdiom '1', Phone='2'}" Grid.Column="{OnIdiom '0', Phone='0'}" 
+                       BorderColor="{DynamicResource Primary}" BackgroundColor="Transparent">
+                    <Grid RowDefinitions="auto,*,*,*,*,*,auto" ColumnDefinitions="auto, *"
+                          RowSpacing="10" ColumnSpacing="10">
+
+                    </Grid>
+                </Frame>
             </Grid>
         </VerticalStackLayout>
     </ScrollView>
