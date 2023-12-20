@@ -17,7 +17,7 @@
                 </CollectionView.ItemsLayout>
 
                 <CollectionView.Header>
-                    <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,200" MinimumWidthRequest="1200">
+                    <Grid ColumnDefinitions="100,200,200,200,200,200,200,200,200">
                         <Frame Grid.Column="0" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
                             <Label Text="Id"/>
                         </Frame>
@@ -50,12 +50,12 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,200" MinimumWidthRequest="1200">
+                        <Grid ColumnDefinitions="100,200,200,200,200,200,200,200,200">
                             <Frame Grid.Column="0" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
                                 <Label Text="{Binding Id}"/>
                             </Frame>
-                            <Frame Grid.Column="1" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
-                                <Label Text="{Binding PositionName}"/>
+                            <Frame Grid.Column="1" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
+                                <Label Text="{Binding PositionName}" LineBreakMode="WordWrap"/>
                             </Frame>
                             <Frame Grid.Column="2" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
                                 <Label Text="{Binding ConcractType}"/>
@@ -87,12 +87,14 @@
                                     <Button Text="Edytuj" 
                                             Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:OffersListPageViewModel}}, Path=GoToOfferEditPageCommand}"
                                             CommandParameter="{Binding .}"
-                                            HorizontalOptions="StartAndExpand"/>
+                                            HorizontalOptions="StartAndExpand"
+                                            VerticalOptions="Center"/>
                                     <Button Text="Usuń" 
                                             Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:OffersListPageViewModel}}, Path=DeleteOfferCommand}"
                                             CommandParameter="{Binding .}"
                                             BackgroundColor="#D21F3C"
-                                            HorizontalOptions="EndAndExpand"/>
+                                            HorizontalOptions="EndAndExpand"
+                                            VerticalOptions="Center"/>
                                 </StackLayout>
                             </Frame>
                         </Grid>

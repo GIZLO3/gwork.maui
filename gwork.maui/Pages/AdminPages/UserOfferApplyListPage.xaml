@@ -18,7 +18,7 @@
                     </CollectionView.ItemsLayout>
 
                     <CollectionView.Header>
-                        <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,230" MinimumWidthRequest="1200">
+                        <Grid ColumnDefinitions="100,200,200,200,200,200,200,200,200">
                             <Frame Grid.Column="0" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
                                 <Label Text="Email"/>
                             </Frame>
@@ -51,7 +51,7 @@
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,230" MinimumWidthRequest="1200">
+                            <Grid ColumnDefinitions="100,200,200,200,200,200,200,200,200">
                                 <Frame Grid.Column="0" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
                                     <Label Text="{Binding User.Email}"/>
                                 </Frame>

@@ -44,7 +44,7 @@ namespace gwork.maui.ViewModels
                         userOfferApply.OfferId = Offer.Id;
 
                         await userOfferApplyDatabase.SaveUserOfferApplyAsync(userOfferApply);
-                        await Shell.Current.DisplayAlert("Informacja", "Pomyślnie aplkowano o pracę", "OK");
+                        await Shell.Current.DisplayAlert("Informacja", "Pomyślnie aplikowano o pracę", "OK");
                     }
                     else
                     {
