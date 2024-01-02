@@ -16,98 +16,97 @@
                     <LinearItemsLayout Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>
 
-                    <CollectionView.Header>
+                <CollectionView.Header>
+                    <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,*,240" MinimumWidthRequest="1400">
+                        <Frame Grid.Column="0" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                            <Label Text="Email"/>
+                        </Frame>
+                        <Frame Grid.Column="1" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                            <Label Text="Name"/>
+                        </Frame>
+                        <Frame Grid.Column="2" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                            <Label Text="Surname"/>
+                        </Frame>
+                        <Frame Grid.Column="3" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                            <Label Text="PositionName"/>
+                        </Frame>
+                        <Frame Grid.Column="4" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                            <Label Text="Category"/>
+                        </Frame>
+                        <Frame Grid.Column="5" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                            <Label Text="Salary"/>
+                        </Frame>
+                        <Frame Grid.Column="6" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                            <Label Text="FirmName"/>
+                        </Frame>
+                        <Frame Grid.Column="7" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                            <Label Text="FirmLocation"/>
+                        </Frame>
+                        <Frame Grid.Column="8" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                            <Label Text="Status"/>
+                        </Frame>
+                        <Frame Grid.Column="9" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                            <Label Text="Zarządzaj"/>
+                        </Frame>
+                    </Grid>
+                </CollectionView.Header>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
                         <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,*,240" MinimumWidthRequest="1400">
                             <Frame Grid.Column="0" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
-                                <Label Text="Email"/>
+                                <Label Text="{Binding User.Email}"/>
                             </Frame>
                             <Frame Grid.Column="1" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
-                                <Label Text="Name"/>
+                                <Label Text="{Binding User.Name}"/>
                             </Frame>
                             <Frame Grid.Column="2" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
-                                <Label Text="Surname"/>
+                                <Label Text="{Binding User.Surname}"/>
                             </Frame>
                             <Frame Grid.Column="3" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
-                                <Label Text="PositionName"/>
+                                <Label Text="{Binding Offer.PositionName}"/>
                             </Frame>
                             <Frame Grid.Column="4" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
-                                <Label Text="Category"/>
+                                <Label Text="{Binding Offer.Category}"/>
                             </Frame>
                             <Frame Grid.Column="5" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
-                                <Label Text="Salary"/>
+                                <Label>
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}{0} - {1} zł">
+                                            <Binding Path="Offer.SalaryLowest"/>
+                                            <Binding Path="Offer.SalaryHighest"/>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
                             </Frame>
                             <Frame Grid.Column="6" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
-                                <Label Text="FirmName"/>
+                                <Label Text="{Binding Offer.FirmName}"/>
                             </Frame>
                             <Frame Grid.Column="7" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
-                                <Label Text="FirmLocation"/>
+                                <Label Text="{Binding Offer.FirmLocation }"/>
                             </Frame>
                             <Frame Grid.Column="8" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
-                                <Label Text="Status"/>
+                                <Label Text="{Binding Status}"/>
                             </Frame>
                             <Frame Grid.Column="9" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
-                                <Label Text="Zarządzaj"/>
-                            </Frame>
-                        </Grid>
-                    </CollectionView.Header>
-
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,*,240" MinimumWidthRequest="1400">
-                                <Frame Grid.Column="0" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
-                                    <Label Text="{Binding User.Email}"/>
-                                </Frame>
-                                <Frame Grid.Column="1" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
-                                    <Label Text="{Binding User.Name}"/>
-                                </Frame>
-                                <Frame Grid.Column="2" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
-                                    <Label Text="{Binding User.Surname}"/>
-                                </Frame>
-                                <Frame Grid.Column="3" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
-                                    <Label Text="{Binding Offer.PositionName}"/>
-                                </Frame>
-                                <Frame Grid.Column="4" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
-                                    <Label Text="{Binding Offer.Category}"/>
-                                </Frame>
-                                <Frame Grid.Column="5" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
-                                    <Label>
-                                        <Label.Text>
-                                            <MultiBinding StringFormat="{}{0} - {1} zł">
-                                                <Binding Path="Offer.SalaryLowest"/>
-                                                <Binding Path="Offer.SalaryHighest"/>
-                                            </MultiBinding>
-                                        </Label.Text>
-                                    </Label>
-                                </Frame>
-                                <Frame Grid.Column="6" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
-                                    <Label Text="{Binding Offer.FirmName}"/>
-                                </Frame>
-                                <Frame Grid.Column="7" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
-                                    <Label Text="{Binding Offer.FirmLocation }"/>
-                                </Frame>
-                                <Frame Grid.Column="8" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
-                                    <Label Text="{Binding Status}"/>
-                                </Frame>
-                                <Frame Grid.Column="9" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
-                                    <StackLayout Orientation="Horizontal">
-                                        <Button Text="Akceptuj" 
+                                <StackLayout Orientation="Horizontal">
+                                    <Button Text="Akceptuj" 
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:UserOfferApplyListPageViewModel}}, Path=AcceptApplyCommand}"
                                         CommandParameter="{Binding .}"
                                         HorizontalOptions="StartAndExpand"
                                         IsEnabled="{Binding Status}"/>
-                                        <Button Text="Odrzuć" 
+                                    <Button Text="Odrzuć" 
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:UserOfferApplyListPageViewModel}}, Path=DeclineApplyCommand}"
                                         CommandParameter="{Binding .}"
                                         BackgroundColor="#D21F3C"
                                         HorizontalOptions="EndAndExpand"
                                         IsEnabled="{Binding Status}"/>
-                                    </StackLayout>
-                                </Frame>
-                            </Grid>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </VerticalStackLayout>
-        </ScrollView>
-    </VerticalStackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
