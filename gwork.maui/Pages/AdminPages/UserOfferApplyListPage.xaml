@@ -18,7 +18,7 @@
                     </CollectionView.ItemsLayout>
 
                     <CollectionView.Header>
-                        <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,230" MinimumWidthRequest="1200">
+                        <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,*,240" MinimumWidthRequest="1400">
                             <Frame Grid.Column="0" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
                                 <Label Text="Email"/>
                             </Frame>
@@ -44,6 +44,9 @@
                                 <Label Text="FirmLocation"/>
                             </Frame>
                             <Frame Grid.Column="8" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                                <Label Text="Status"/>
+                            </Frame>
+                            <Frame Grid.Column="9" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
                                 <Label Text="Zarządzaj"/>
                             </Frame>
                         </Grid>
@@ -51,7 +54,7 @@
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,230" MinimumWidthRequest="1200">
+                            <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,*,240" MinimumWidthRequest="1400">
                                 <Frame Grid.Column="0" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
                                     <Label Text="{Binding User.Email}"/>
                                 </Frame>
@@ -84,16 +87,21 @@
                                     <Label Text="{Binding Offer.FirmLocation }"/>
                                 </Frame>
                                 <Frame Grid.Column="8" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
+                                    <Label Text="{Binding Status}"/>
+                                </Frame>
+                                <Frame Grid.Column="9" CornerRadius="0"  BorderColor="Black" BackgroundColor="Transparent">
                                     <StackLayout Orientation="Horizontal">
                                         <Button Text="Akceptuj" 
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:UserOfferApplyListPageViewModel}}, Path=AcceptApplyCommand}"
                                         CommandParameter="{Binding .}"
-                                        HorizontalOptions="StartAndExpand"/>
+                                        HorizontalOptions="StartAndExpand"
+                                        IsEnabled="{Binding Status}"/>
                                         <Button Text="Odrzuć" 
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:UserOfferApplyListPageViewModel}}, Path=DeclineApplyCommand}"
                                         CommandParameter="{Binding .}"
                                         BackgroundColor="#D21F3C"
-                                        HorizontalOptions="EndAndExpand"/>
+                                        HorizontalOptions="EndAndExpand"
+                                        IsEnabled="{Binding Status}"/>
                                     </StackLayout>
                                 </Frame>
                             </Grid>

@@ -27,11 +27,12 @@ namespace gwork.maui.ViewModels
         private string? educationEnumSelected;
 
         [ObservableProperty]
-        private ObservableCollection<Offer>? appliedOffers;
+        private ObservableCollection<UserOfferApplyListItem>? appliedOffers;
 
         private EmployeeDetailsDatabase employeeDetailsDatabase = new();
         private UserOfferApplyDatabase userOfferApplyDatabase = new();
         private OfferDatabase offerDatabase = new();
+        private UserDatabase userDatabase = new();
 
         public async void GetEmployeeDetails()
         {
@@ -48,16 +49,18 @@ namespace gwork.maui.ViewModels
         {
             var userOffersApplied = await userOfferApplyDatabase.GetUserOffersAppliedAsync(User.Id);
 
-            var appliedOffers = new ObservableCollection<Offer>();
+            var userOfferApplyListItems = new ObservableCollection<UserOfferApplyListItem>();
             foreach (var userOfferApply in userOffersApplied)
             {
+                var userOfferApplyListItem = new UserOfferApplyListItem();
+                userOfferApplyListItem.User = await userDatabase.GetUserAsync(userOfferApply.UserId);
+                userOfferApplyListItem.Offer = await offerDatabase.GetOfferAsync(userOfferApply.OfferId);
+                userOfferApplyListItem.Status = userOfferApply.Status;
 
-                var offer = await offerDatabase.GetOfferAsync(userOfferApply.OfferId);
-                if (offer != null)
-                    appliedOffers.Add(offer);
+                userOfferApplyListItems.Add(userOfferApplyListItem);
             }
 
-            AppliedOffers = appliedOffers;
+            AppliedOffers = userOfferApplyListItems;
         }
 
         [RelayCommand]

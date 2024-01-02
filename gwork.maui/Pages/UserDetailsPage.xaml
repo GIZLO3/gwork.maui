@@ -4,6 +4,7 @@
              xmlns:viewmodels="clr-namespace:gwork.maui.ViewModels"
              x:Class="gwork.maui.Pages.UserDetailsPage"
              Shell.NavBarIsVisible="False">
+
     <ScrollView>
         <VerticalStackLayout VerticalOptions="Center" Padding="40, 20">
             <Label Text="Twój profil G-work" 
@@ -136,33 +137,35 @@
                                FontSize="16"/>
                         <CollectionView ItemsSource="{Binding AppliedOffers}" HorizontalOptions="FillAndExpand">
                             <CollectionView.ItemsLayout>
-                                <GridItemsLayout Orientation="Vertical" Span="{OnIdiom '1', Desktop='2'}" HorizontalItemSpacing="10" VerticalItemSpacing="10"/>
+                                <GridItemsLayout Orientation="Vertical" Span="{OnIdiom '1', Desktop='2'}" HorizontalItemSpacing="10" VerticalItemSpacing="0"/>
                             </CollectionView.ItemsLayout>
 
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <Frame BorderColor="Black" BackgroundColor="Transparent">
                                         <StackLayout Spacing="5">
-                                            <Label Text="{Binding PositionName}" FontAttributes="Bold" HorizontalOptions="FillAndExpand" LineBreakMode="TailTruncation" TextColor="{AppThemeBinding Light={StaticResource SecondaryDarkText}, Dark={StaticResource Secondary}}"/>
-                                            <Label Text="{Binding FirmName}" FontAttributes="Bold"/>
-                                            <Label Grid.Row="1" TextColor="{AppThemeBinding Light={StaticResource SecondaryDarkText}, Dark={StaticResource Secondary}}">
+                                            <Label Text="{Binding Offer.PositionName}" FontAttributes="Bold" HorizontalOptions="FillAndExpand" LineBreakMode="TailTruncation" TextColor="{AppThemeBinding Light={StaticResource SecondaryDarkText}, Dark={StaticResource Secondary}}"/>
+                                            <Label Text="{Binding Offer.FirmName}" FontAttributes="Bold"/>
+                                            <Label TextColor="{AppThemeBinding Light={StaticResource SecondaryDarkText}, Dark={StaticResource Secondary}}">
                                                 <Label.Text>
                                                     <MultiBinding StringFormat="{}{0} - {1} zł">
-                                                        <Binding Path="SalaryLowest"/>
-                                                        <Binding Path="SalaryHighest"/>
+                                                        <Binding Path="Offer.SalaryLowest"/>
+                                                        <Binding Path="Offer.SalaryHighest"/>
                                                     </MultiBinding>
                                                 </Label.Text>
                                             </Label>
+                                            <Label Text="{Binding Status, StringFormat='Status: {0}'}"/>
                                             <StackLayout Orientation="Horizontal" Spacing="10">
                                                 <Button Text="Do oferty"
                                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:UserDetailsPageViewModel}}, Path=GoToOfferDetailsCommand}" 
-                                                    CommandParameter="{Binding .}"/>
+                                                    CommandParameter="{Binding Offer}"/>
                                                 <Button Text="Anuluj"
                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:UserDetailsPageViewModel}}, Path=DeleteUserOfferApplyCommand}" 
-                                                        CommandParameter="{Binding .}"
-                                                        BackgroundColor="#D21F3C"/>
+                                                        CommandParameter="{Binding Offer}"
+                                                        BackgroundColor="#D21F3C"
+                                                        IsEnabled="{Binding Status}"/>
                                             </StackLayout>
-                                            <Label Text="{Binding ExpireDate, StringFormat='Koniec rekrutacji: {0:dd/MM/yyyy}'}"/>
+                                            <Label Text="{Binding Offer.ExpireDate, StringFormat='Koniec rekrutacji: {0:dd/MM/yyyy}'}"/>
                                         </StackLayout>
                                     </Frame>
                                 </DataTemplate>

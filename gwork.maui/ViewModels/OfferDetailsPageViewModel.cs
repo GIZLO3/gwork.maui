@@ -42,6 +42,7 @@ namespace gwork.maui.ViewModels
                         var userOfferApply = new UserOfferApply();
                         userOfferApply.UserId = App.LoggedUser.Id;
                         userOfferApply.OfferId = Offer.Id;
+                        userOfferApply.Status = UserOfferApplyStatusEnum.oczekująca;
 
                         await userOfferApplyDatabase.SaveUserOfferApplyAsync(userOfferApply);
                         await Shell.Current.DisplayAlert("Informacja", "Pomyślnie aplkowano o pracę", "OK");

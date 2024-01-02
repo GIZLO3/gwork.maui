@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using gwork.maui.Data;
 using gwork.maui.Models;
 using System.Collections.ObjectModel;
+using System.Net.WebSockets;
 
 namespace gwork.maui.ViewModels
 {
@@ -30,6 +31,7 @@ namespace gwork.maui.ViewModels
                 var userOfferApplyListItem = new UserOfferApplyListItem();
                 userOfferApplyListItem.User = await userDatabase.GetUserAsync(userOfferApply.UserId);
                 userOfferApplyListItem.Offer = await offerDatabase.GetOfferAsync(userOfferApply.OfferId);
+                userOfferApplyListItem.Status = userOfferApply.Status;
 
                 userOfferApplyListItems.Add(userOfferApplyListItem);
             }
@@ -40,6 +42,15 @@ namespace gwork.maui.ViewModels
         [RelayCommand]
         private async Task AcceptApply(object commandParameter)
         {
+            var userOfferApplyListItem = commandParameter as UserOfferApplyListItem;
+            var userId = userOfferApplyListItem.User.Id;
+            var offerId = userOfferApplyListItem.Offer.Id;
+
+            var userOfferApply = await userOfferApplyDatabase.GetUserOfferApplyAsync(userId, offerId);
+
+            userOfferApply.Status = UserOfferApplyStatusEnum.zaakceptowana;
+            await userOfferApplyDatabase.SaveUserOfferApplyAsync(userOfferApply);
+
             await Shell.Current.DisplayAlert("Informacja", "Zaakceptowano aplikację o pracę", "OK");
             GetUserOfferApplyList();
         }
