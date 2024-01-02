@@ -4,18 +4,17 @@
              xmlns:viewmodels="clr-namespace:gwork.maui.ViewModels"
              x:Class="gwork.maui.Pages.AdminPages.UserOfferApplyListPage"
              Shell.NavBarIsVisible="False">
-    <VerticalStackLayout>
-        <ScrollView Orientation="Both" HorizontalScrollBarVisibility="Always">
-            <VerticalStackLayout>
-                <Label Text="Zarządzaj ofertami" 
+    <ScrollView Orientation="Both" HorizontalScrollBarVisibility="Always">
+        <VerticalStackLayout>
+            <Label Text="Zarządzaj ofertami" 
                FontSize="24" 
                TextColor="{DynamicResource Primary}" 
                HorizontalOptions="Center"/>
 
-                <CollectionView ItemsSource="{Binding UserOfferApplyListItems}" Margin="40" HorizontalOptions="FillAndExpand">
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Vertical"/>
-                    </CollectionView.ItemsLayout>
+            <CollectionView ItemsSource="{Binding UserOfferApplyListItems}" Margin="40" HorizontalOptions="FillAndExpand">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
 
                     <CollectionView.Header>
                         <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,*,240" MinimumWidthRequest="1400">
